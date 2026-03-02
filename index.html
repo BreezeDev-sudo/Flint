@@ -25,7 +25,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -38,13 +37,9 @@
     overflow-x: hidden;
   }
 
-  /* ── LAYOUT ────────────────────────────────── */
-  .shell {
-    display: flex;
-    min-height: 100vh;
-  }
+  .shell { display: flex; min-height: 100vh; }
 
-  /* ── SIDEBAR ────────────────────────────────── */
+  /* ── SIDEBAR ── */
   .sidebar {
     width: var(--sidebar-w);
     min-height: 100vh;
@@ -74,31 +69,12 @@
     gap: 10px;
   }
 
-  .logo-icon {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    flex-shrink: 0;
-  }
-
+  .logo-icon { width: 30px; height: 30px; position: relative; flex-shrink: 0; }
   .logo-icon svg { width: 100%; height: 100%; }
+  .logo-version { display: inline-block; margin-top: 6px; font-size: 11px; color: var(--ash); letter-spacing: 0.05em; }
 
-  .logo-version {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 11px;
-    color: var(--ash);
-    letter-spacing: 0.05em;
-  }
-
-  .nav {
-    padding: 20px 0;
-    flex: 1;
-  }
-
-  .nav-group {
-    margin-bottom: 8px;
-  }
+  .nav { padding: 20px 0; flex: 1; }
+  .nav-group { margin-bottom: 8px; }
 
   .nav-group-label {
     font-family: 'Syne', sans-serif;
@@ -118,36 +94,18 @@
     color: var(--text-dim);
     text-decoration: none;
     font-size: 13px;
-    font-weight: 400;
     transition: color 0.15s, background 0.15s;
     border-left: 2px solid transparent;
     margin-left: -1px;
   }
 
-  .nav a:hover {
-    color: var(--text);
-    background: var(--ember-glow);
-    border-left-color: var(--ember-dim);
-  }
+  .nav a:hover { color: var(--text); background: var(--ember-glow); border-left-color: var(--ember-dim); }
+  .nav a.active { color: var(--ember); border-left-color: var(--ember); background: var(--ember-glow); }
 
-  .nav a.active {
-    color: var(--ember);
-    border-left-color: var(--ember);
-    background: var(--ember-glow);
-  }
+  .nav-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--smoke); flex-shrink: 0; transition: background 0.15s; }
+  .nav a:hover .nav-dot, .nav a.active .nav-dot { background: var(--ember); }
 
-  .nav-dot {
-    width: 4px; height: 4px;
-    border-radius: 50%;
-    background: var(--smoke);
-    flex-shrink: 0;
-    transition: background 0.15s;
-  }
-
-  .nav a:hover .nav-dot,
-  .nav a.active .nav-dot { background: var(--ember); }
-
-  /* ── MAIN ────────────────────────────────── */
+  /* ── MAIN ── */
   .main {
     margin-left: var(--sidebar-w);
     flex: 1;
@@ -155,12 +113,8 @@
     padding: 64px 56px 100px;
   }
 
-  /* ── HERO ────────────────────────────────── */
-  .hero {
-    margin-bottom: 72px;
-    position: relative;
-  }
-
+  /* ── HERO ── */
+  .hero { margin-bottom: 72px; position: relative; }
   .hero::before {
     content: '';
     position: absolute;
@@ -170,14 +124,7 @@
     pointer-events: none;
   }
 
-  .hero-eyebrow {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ember);
-    margin-bottom: 14px;
-  }
+  .hero-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ember); margin-bottom: 14px; }
 
   .hero h1 {
     font-family: 'Syne', sans-serif;
@@ -190,315 +137,115 @@
   }
 
   .hero h1 span { color: var(--ember); }
-
-  .hero-desc {
-    font-size: 15px;
-    color: var(--text-dim);
-    line-height: 1.8;
-    max-width: 540px;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  .hero-badges {
-    display: flex;
-    gap: 10px;
-    margin-top: 28px;
-    flex-wrap: wrap;
-  }
+  .hero-desc { font-size: 15px; color: var(--text-dim); line-height: 1.8; max-width: 540px; }
+  .hero-badges { display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; }
 
   .badge {
-    padding: 5px 12px;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    background: var(--bg3);
+    padding: 5px 12px; border-radius: 4px; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.06em; border: 1px solid var(--border); color: var(--text-dim); background: var(--bg3);
   }
+  .badge.hot { border-color: var(--ember-dim); color: var(--ember); background: rgba(255,107,26,0.08); }
 
-  .badge.hot {
-    border-color: var(--ember-dim);
-    color: var(--ember);
-    background: rgba(255,107,26,0.08);
-  }
-
-  /* ── SECTIONS ────────────────────────────── */
-  .section {
-    margin-bottom: 64px;
-    scroll-margin-top: 32px;
-  }
+  /* ── SECTIONS ── */
+  .section { margin-bottom: 64px; scroll-margin-top: 32px; }
 
   .section-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 28px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 28px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
   }
 
-  .section-number {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--ember);
-    letter-spacing: 0.1em;
-    font-family: 'Syne', sans-serif;
-  }
+  .section-number { font-size: 11px; font-weight: 600; color: var(--ember); letter-spacing: 0.1em; font-family: 'Syne', sans-serif; }
 
-  .section h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text);
-    letter-spacing: -0.3px;
-  }
+  .section h2 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--text); letter-spacing: -0.3px; }
+  .section h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 600; color: var(--spark); margin: 28px 0 12px; }
+  .section p { color: var(--text-dim); margin-bottom: 14px; font-size: 13.5px; line-height: 1.85; }
 
-  .section h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--spark);
-    margin: 28px 0 12px;
-    letter-spacing: 0.02em;
-  }
-
-  .section p {
-    color: var(--text-dim);
-    margin-bottom: 14px;
-    font-size: 13.5px;
-    line-height: 1.85;
-    font-family: 'JetBrains Mono', monospace;
-  }
-
-  /* ── CODE BLOCKS ─────────────────────────── */
+  /* ── CODE BLOCKS ── */
   .code-wrap {
-    position: relative;
-    margin: 16px 0 24px;
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--code-bg);
+    position: relative; margin: 16px 0 24px;
+    border-radius: 8px; overflow: hidden;
+    border: 1px solid var(--border); background: var(--code-bg);
   }
 
   .code-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 9px 16px;
-    background: var(--bg3);
-    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 16px; background: var(--bg3); border-bottom: 1px solid var(--border);
   }
 
-  .code-lang {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ash);
-  }
+  .code-lang { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); }
 
   .code-copy {
-    background: none;
-    border: 1px solid var(--border);
-    color: var(--ash);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    padding: 3px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: all 0.15s;
-    letter-spacing: 0.05em;
+    background: none; border: 1px solid var(--border); color: var(--ash);
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 10px;
+    border-radius: 3px; cursor: pointer; transition: all 0.15s; letter-spacing: 0.05em;
   }
+  .code-copy:hover { border-color: var(--ember-dim); color: var(--ember); }
 
-  .code-copy:hover {
-    border-color: var(--ember-dim);
-    color: var(--ember);
-  }
-
-  pre {
-    padding: 20px 22px;
-    overflow-x: auto;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
+  pre { padding: 20px 22px; overflow-x: auto; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.8; }
   code { font-family: 'JetBrains Mono', monospace; }
 
   /* Syntax highlighting */
-  .kw   { color: #ff6b1a; font-weight: 500; }     /* keywords */
-  .fn   { color: #ffcc66; }                         /* functions */
-  .str  { color: #88dd88; }                         /* strings */
-  .num  { color: #66aaff; }                         /* numbers */
-  .cm   { color: #4a4a60; font-style: italic; }     /* comments */
-  .type { color: #cc88ff; }                         /* types */
-  .var  { color: #e8e8f0; }                         /* variables */
-  .op   { color: #ff9966; }                         /* operators */
+  .kw   { color: #ff6b1a; font-weight: 500; }
+  .fn   { color: #ffcc66; }
+  .str  { color: #88dd88; }
+  .num  { color: #66aaff; }
+  .cm   { color: #4a4a60; font-style: italic; }
+  .type { color: #cc88ff; }
+  .var  { color: #e8e8f0; }
+  .op   { color: #ff9966; }
+  .input-fn { color: #44ddcc; } /* teal for input functions */
 
-  /* ── TABLES ──────────────────────────────── */
-  .table-wrap {
-    overflow-x: auto;
-    margin: 16px 0 24px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-
-  thead {
-    background: var(--bg3);
-    border-bottom: 1px solid var(--border);
-  }
-
-  th {
-    padding: 10px 16px;
-    text-align: left;
-    font-family: 'Syne', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ash);
-  }
-
-  td {
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text-dim);
-    vertical-align: top;
-  }
-
+  /* ── TABLES ── */
+  .table-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: var(--bg3); border-bottom: 1px solid var(--border); }
+  th { padding: 10px 16px; text-align: left; font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ash); }
+  td { padding: 10px 16px; border-bottom: 1px solid var(--border); color: var(--text-dim); vertical-align: top; }
   tr:last-child td { border-bottom: none; }
   tr:hover td { background: rgba(255,107,26,0.03); }
-
-  td code {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    padding: 2px 7px;
-    border-radius: 3px;
-    font-size: 12px;
-    color: var(--spark);
-  }
-
+  td code { background: var(--bg3); border: 1px solid var(--border); padding: 2px 7px; border-radius: 3px; font-size: 12px; color: var(--spark); }
   td:first-child code { color: var(--ember); }
 
-  /* ── CALLOUTS ────────────────────────────── */
+  /* ── CALLOUTS ── */
   .callout {
-    padding: 16px 20px;
-    border-radius: 6px;
-    border-left: 3px solid var(--ember);
-    background: rgba(255,107,26,0.06);
-    margin: 20px 0;
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.75;
+    padding: 16px 20px; border-radius: 6px; border-left: 3px solid var(--ember);
+    background: rgba(255,107,26,0.06); margin: 20px 0; font-size: 13px; color: var(--text-dim); line-height: 1.75;
   }
-
   .callout strong { color: var(--ember); font-weight: 600; }
-
-  .callout.info {
-    border-left-color: #66aaff;
-    background: rgba(102,170,255,0.06);
-  }
-
+  .callout.info { border-left-color: #66aaff; background: rgba(102,170,255,0.06); }
   .callout.info strong { color: #66aaff; }
+  .callout.green { border-left-color: #44cc88; background: rgba(68,204,136,0.06); }
+  .callout.green strong { color: #44cc88; }
 
-  /* ── QUICK REF ───────────────────────────── */
-  .qref-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 16px;
-  }
-
-  .qref-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 14px 16px;
-    transition: border-color 0.15s;
-  }
-
+  /* ── QUICK REF ── */
+  .qref-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+  .qref-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; padding: 14px 16px; transition: border-color 0.15s; }
   .qref-card:hover { border-color: var(--ember-dim); }
+  .qref-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ash); margin-bottom: 8px; font-family: 'Syne', sans-serif; }
+  .qref-card code { font-size: 12px; color: var(--spark); display: block; line-height: 1.6; }
 
-  .qref-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--ash);
-    margin-bottom: 8px;
-    font-family: 'Syne', sans-serif;
-  }
+  /* ── MODE PILLS ── */
+  .mode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+  .mode-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; padding: 14px; transition: all 0.15s; }
+  .mode-card:hover { border-color: var(--ember-dim); background: rgba(255,107,26,0.05); }
+  .mode-name { font-size: 12px; font-weight: 500; color: var(--ember); margin-bottom: 4px; }
+  .mode-desc { font-size: 11px; color: var(--ash); line-height: 1.5; }
 
-  .qref-card code {
-    font-size: 12px;
-    color: var(--spark);
-    display: block;
-    line-height: 1.6;
-  }
-
-  /* ── MODE PILLS ─────────────────────────── */
-  .mode-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 16px 0;
-  }
-
-  .mode-card {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    border-radius: 7px;
-    padding: 14px 14px;
-    transition: all 0.15s;
-  }
-
-  .mode-card:hover {
-    border-color: var(--ember-dim);
-    background: rgba(255,107,26,0.05);
-  }
-
-  .mode-name {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--ember);
-    margin-bottom: 4px;
-  }
-
-  .mode-desc {
-    font-size: 11px;
-    color: var(--ash);
-    line-height: 1.5;
-  }
-
-  /* ── INLINE CODE ─────────────────────────── */
+  /* ── INLINE CODE ── */
   p code, li code {
-    background: var(--bg3);
-    border: 1px solid var(--border);
-    padding: 1px 6px;
-    border-radius: 3px;
-    font-size: 12.5px;
-    color: var(--spark);
+    background: var(--bg3); border: 1px solid var(--border);
+    padding: 1px 6px; border-radius: 3px; font-size: 12.5px; color: var(--spark);
   }
 
-  /* ── SCROLLBAR ───────────────────────────── */
+  /* ── KEY BADGE ── */
+  .key { display: inline-block; background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 1px 7px; font-size: 11px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--smoke); }
 
-  /* ── ANIMATIONS ──────────────────────────── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .hero { animation: fadeUp 0.5s ease both; }
   .section { animation: fadeUp 0.5s ease both; }
   .section:nth-child(2)  { animation-delay: 0.05s; }
@@ -508,7 +255,6 @@
   .section:nth-child(6)  { animation-delay: 0.25s; }
   .section:nth-child(7)  { animation-delay: 0.30s; }
 
-  /* ── RESPONSIVE ──────────────────────────── */
   @media (max-width: 800px) {
     .sidebar { display: none; }
     .main { margin-left: 0; padding: 32px 24px 80px; }
@@ -518,10 +264,9 @@
 </style>
 </head>
 <body>
-
 <div class="shell">
 
-<!-- ── SIDEBAR ──────────────────────────── -->
+<!-- ── SIDEBAR ── -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <div class="logo-wordmark">
@@ -549,6 +294,7 @@
       <a href="#kindle" onclick="setActive(this)"><span class="nav-dot"></span>kindle — Modules</a>
       <a href="#variables" onclick="setActive(this)"><span class="nav-dot"></span>Variables</a>
       <a href="#functions" onclick="setActive(this)"><span class="nav-dot"></span>Functions</a>
+      <a href="#control-flow" onclick="setActive(this)"><span class="nav-dot"></span>Control Flow</a>
       <a href="#expressions" onclick="setActive(this)"><span class="nav-dot"></span>Expressions</a>
     </div>
     <div class="nav-group">
@@ -560,6 +306,7 @@
       <div class="nav-group-label">Built-ins</div>
       <a href="#builtins-console" onclick="setActive(this)"><span class="nav-dot"></span>Console</a>
       <a href="#builtins-drawing" onclick="setActive(this)"><span class="nav-dot"></span>Drawing</a>
+      <a href="#builtins-input" onclick="setActive(this)"><span class="nav-dot"></span>Input</a>
       <a href="#builtins-math" onclick="setActive(this)"><span class="nav-dot"></span>Math</a>
       <a href="#builtins-convert" onclick="setActive(this)"><span class="nav-dot"></span>Conversion</a>
     </div>
@@ -567,64 +314,51 @@
       <div class="nav-group-label">Examples</div>
       <a href="#example-cli" onclick="setActive(this)"><span class="nav-dot"></span>CLI Program</a>
       <a href="#example-window" onclick="setActive(this)"><span class="nav-dot"></span>Window App</a>
-      <a href="#example-game" onclick="setActive(this)"><span class="nav-dot"></span>Game</a>
+      <a href="#example-game" onclick="setActive(this)"><span class="nav-dot"></span>Interactive Game</a>
       <a href="#quickref" onclick="setActive(this)"><span class="nav-dot"></span>Quick Reference</a>
     </div>
   </nav>
 </aside>
 
-<!-- ── MAIN ──────────────────────────────── -->
+<!-- ── MAIN ── -->
 <main class="main">
 
   <!-- HERO -->
   <div class="hero">
     <div class="hero-eyebrow">🔥 Language Reference</div>
     <h1>The <span>Flint</span><br>Programming Language</h1>
-    <p class="hero-desc">A lightweight scripting language for CLI tools and graphical applications. Files use the <code>.flt</code> extension. Install once, then just type <code>flint</code>.</p>
+    <p class="hero-desc">A lightweight scripting language for CLI tools and real-time graphical applications. Files use the <code>.flt</code> extension. Write once, run with <code>flint</code>.</p>
     <div class="hero-badges">
       <span class="badge hot">v0.1</span>
       <span class="badge">.flt files</span>
-      <span class="badge">standalone binary</span>
+      <span class="badge">native windows</span>
+      <span class="badge">keyboard + mouse</span>
       <span class="badge">TypeScript core</span>
     </div>
   </div>
 
   <!-- INSTALLATION -->
   <section class="section" id="install">
-    <div class="section-header">
-      <span class="section-number">01</span>
-      <h2>Installation</h2>
-    </div>
-    <p>Drop the installer script into your Flint source folder and run it once. It handles everything — including installing Deno if you don't have it — and gives you a standalone <code>flint</code> command that works from anywhere.</p>
+    <div class="section-header"><span class="section-number">01</span><h2>Installation</h2></div>
+    <p>Drop the installer script into your Flint source folder and run it once. It installs Deno if needed and gives you a standalone <code>flint</code> command.</p>
 
     <h3>Windows</h3>
-    <p>Save <code>install.ps1</code> into your Flint source folder, then run:</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">powershell</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre>powershell -ExecutionPolicy Bypass -File install.ps1</pre>
     </div>
 
     <h3>Mac / Linux</h3>
-    <p>Save <code>install.sh</code> into your Flint source folder, then run:</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">bash</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre>bash install.sh</pre>
     </div>
 
     <div class="callout">
-      <strong>What the installer does:</strong> checks for Deno (installs it automatically if missing), compiles <code>flint.exe</code> / <code>flint</code>, copies it to a permanent location, and adds that location to your PATH — so you never have to touch it again.
+      <strong>What the installer does:</strong> checks for Deno (installs if missing), compiles <code>flint.exe</code> / <code>flint</code>, copies it to a permanent location, adds it to your PATH.
     </div>
-
-    <h3>After installing</h3>
-    <p>Open a <strong>new terminal window</strong> after the script finishes. This is required for the PATH change to take effect. Then verify it worked:</p>
-    <div class="code-wrap">
-      <div class="code-header"><span class="code-lang">powershell</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre>flint</pre>
-    </div>
-    <p>You should see the REPL start up. Type <code>exit</code> to quit.</p>
 
     <h3>File layout</h3>
-    <p>The installer expects all source files to be flat in the same directory:</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">text</span></div>
       <pre>Flint/
@@ -636,50 +370,29 @@
 ├── install.ps1     <span class="cm">← Windows</span>
 └── install.sh      <span class="cm">← Mac / Linux</span></pre>
     </div>
-
-    <h3>Uninstalling</h3>
-    <div class="code-wrap">
-      <div class="code-header"><span class="code-lang">powershell</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="cm"># Windows</span>
-Remove-Item "$env:USERPROFILE\AppData\Local\Programs\flint\flint.exe"
-
-<span class="cm"># Mac / Linux</span>
-rm ~/.local/bin/flint</pre>
-    </div>
   </section>
 
   <!-- USAGE -->
   <section class="section" id="start">
-    <div class="section-header">
-      <span class="section-number">02</span>
-      <h2>Usage</h2>
-    </div>
-    <p>Once installed, <code>flint</code> works from any directory on your machine — no need to be in the source folder.</p>
-
+    <div class="section-header"><span class="section-number">02</span><h2>Usage</h2></div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">powershell</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="cm"># Run a .flt file</span>
 flint myprogram.flt
 
-<span class="cm"># Run a file in another directory</span>
-flint C:\Users\You\Desktop\game.flt
+<span class="cm"># Run a windowed app (needs extra Deno permissions)</span>
+deno run --unstable-ffi --allow-ffi --allow-read --allow-write --allow-env --allow-net main.ts game.flt
 
 <span class="cm"># Start the interactive REPL</span>
 flint</pre>
     </div>
 
-    <div class="callout">
-      <strong>REPL tip:</strong> In the REPL, type <code>exit</code> to quit. Expression results are printed automatically — no <code>print()</code> needed.
-    </div>
-
-    <h3>Error messages</h3>
-    <p>If something goes wrong, Flint exits immediately and prints the error. There are three kinds:</p>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Prefix</th><th>Cause</th></tr></thead>
         <tbody>
           <tr><td><code>Lexer Error</code></td><td>Unrecognised character or unterminated string</td></tr>
-          <tr><td><code>Parser Error</code></td><td>Syntax mistake — missing <code>;</code>, wrong keyword order, etc.</td></tr>
+          <tr><td><code>Parser Error</code></td><td>Syntax mistake — missing <code>;</code>, wrong keyword order</td></tr>
           <tr><td><code>Runtime Error</code></td><td>Undefined variable, wrong types, division by zero</td></tr>
         </tbody>
       </table>
@@ -688,68 +401,56 @@ flint</pre>
 
   <!-- STRUCTURE -->
   <section class="section" id="structure">
-    <div class="section-header">
-      <span class="section-number">03</span>
-      <h2>Program Structure</h2>
-    </div>
-    <p>Every Flint program follows a consistent top-to-bottom structure. The order matters — <code>ignite</code> is always first, <code>ash</code> always last.</p>
+    <div class="section-header"><span class="section-number">03</span><h2>Program Structure</h2></div>
+    <p><code>ignite</code> is always first, <code>ash</code> always last. Everything else goes in between.</p>
 
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="cm">// 1. Set the run mode</span>
+      <pre><span class="cm">// 1. Set the run mode (required)</span>
 <span class="kw">ignite</span> window_app<span class="op">;</span>
 
 <span class="cm">// 2. Import modules (optional)</span>
 <span class="kw">kindle</span> ui<span class="op">;</span>
 
-<span class="cm">// 3. Declare variables and functions</span>
+<span class="cm">// 3. Variables, functions</span>
 <span class="kw">let</span> <span class="var">title</span> <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"My App"</span><span class="op">;</span>
 
-<span class="cm">// 4. Create a window</span>
+<span class="cm">// 4. Create a window (graphical modes only)</span>
 <span class="kw">spark</span> <span class="fn">window</span>(<span class="var">title</span>, <span class="num">800</span>, <span class="num">600</span>)<span class="op">;</span>
 
-<span class="cm">// 5. Main loop</span>
+<span class="cm">// 5. Render / game loop</span>
 <span class="kw">flame</span> {
     <span class="fn">clear</span>(<span class="str">"#000000"</span>)<span class="op">;</span>
-    <span class="cm">// draw things here...</span>
+    <span class="cm">// draw and update here...</span>
 }
 
-<span class="cm">// 6. End the program</span>
+<span class="cm">// 6. End (required)</span>
 <span class="kw">ash</span><span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- IGNITE -->
   <section class="section" id="ignite">
-    <div class="section-header">
-      <span class="section-number">04</span>
-      <h2>ignite — Run Modes</h2>
-    </div>
-    <p><code>ignite</code> must be the very first statement. It declares what kind of program you're building and determines which features are available.</p>
-
+    <div class="section-header"><span class="section-number">04</span><h2>ignite — Run Modes</h2></div>
+    <p><code>ignite</code> must be the first statement. It sets what kind of program you're building.</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">syntax</span></div>
       <pre><span class="kw">ignite</span> <span class="type">MODE</span><span class="op">;</span></pre>
     </div>
-
     <div class="mode-grid">
-      <div class="mode-card"><div class="mode-name">cli</div><div class="mode-desc">Terminal / command-line programs</div></div>
-      <div class="mode-card"><div class="mode-name">window_app</div><div class="mode-desc">Standard windowed GUI</div></div>
-      <div class="mode-card"><div class="mode-name">fullscreen_app</div><div class="mode-desc">Fullscreen GUI application</div></div>
-      <div class="mode-card"><div class="mode-name">game</div><div class="mode-desc">Game with a render loop</div></div>
-      <div class="mode-card"><div class="mode-name">renderer</div><div class="mode-desc">Custom graphics / rendering tool</div></div>
-      <div class="mode-card"><div class="mode-name">headless</div><div class="mode-desc">Background process, no window</div></div>
+      <div class="mode-card"><div class="mode-name">cli</div><div class="mode-desc">Terminal / command-line programs. No window.</div></div>
+      <div class="mode-card"><div class="mode-name">window_app</div><div class="mode-desc">Standard windowed GUI application.</div></div>
+      <div class="mode-card"><div class="mode-name">fullscreen_app</div><div class="mode-desc">Fullscreen GUI application.</div></div>
+      <div class="mode-card"><div class="mode-name">game</div><div class="mode-desc">Game with a real-time render loop.</div></div>
+      <div class="mode-card"><div class="mode-name">renderer</div><div class="mode-desc">Custom graphics / rendering tool.</div></div>
+      <div class="mode-card"><div class="mode-name">headless</div><div class="mode-desc">Background process, no window.</div></div>
     </div>
   </section>
 
   <!-- KINDLE -->
   <section class="section" id="kindle">
-    <div class="section-header">
-      <span class="section-number">05</span>
-      <h2>kindle — Modules</h2>
-    </div>
-    <p>Import a module by name. Modules extend the available functions and capabilities of your program.</p>
-
+    <div class="section-header"><span class="section-number">05</span><h2>kindle — Modules</h2></div>
+    <p>Import a module by name. Modules extend available functions.</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">kindle</span> ui<span class="op">;</span>
@@ -759,50 +460,41 @@ flint</pre>
 
   <!-- VARIABLES -->
   <section class="section" id="variables">
-    <div class="section-header">
-      <span class="section-number">06</span>
-      <h2>Variables</h2>
-    </div>
-    <p>Variables are declared with <code>let</code>, given a type using <code>of</code>, and assigned with <code>=</code>.</p>
-
+    <div class="section-header"><span class="section-number">06</span><h2>Variables</h2></div>
+    <p>Declared with <code>let</code>, typed with <code>of</code>, assigned with <code>=</code>. After declaration, reassign with just <code>name = value;</code>.</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">syntax</span></div>
       <pre><span class="kw">let</span> <span class="var">NAME</span> <span class="kw">of</span> <span class="type">TYPE</span> <span class="op">=</span> VALUE<span class="op">;</span></pre>
     </div>
-
     <div class="table-wrap">
       <table>
         <thead><tr><th>Type</th><th>Description</th><th>Example</th></tr></thead>
         <tbody>
           <tr><td><code>int</code></td><td>Integer number</td><td><code>let score of int = 0;</code></td></tr>
-          <tr><td><code>float</code></td><td>Decimal number</td><td><code>let speed of float = 3.14;</code></td></tr>
-          <tr><td><code>string</code></td><td>Text value</td><td><code>let name of string = "Flint";</code></td></tr>
+          <tr><td><code>float</code></td><td>Decimal number</td><td><code>let speed of float = 1.5;</code></td></tr>
+          <tr><td><code>string</code></td><td>Text</td><td><code>let name of string = "Flint";</code></td></tr>
           <tr><td><code>bool</code></td><td>True or false</td><td><code>let active of bool = true;</code></td></tr>
-          <tr><td><code>void</code></td><td>No value (functions)</td><td>—</td></tr>
+          <tr><td><code>void</code></td><td>No value (functions only)</td><td>—</td></tr>
         </tbody>
       </table>
     </div>
-
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">let</span> <span class="var">score</span>  <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">speed</span>  <span class="kw">of</span> <span class="type">float</span>  <span class="op">=</span> <span class="num">3.14</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">name</span>   <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"Flint"</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">active</span> <span class="kw">of</span> <span class="type">bool</span>   <span class="op">=</span> <span class="num">true</span><span class="op">;</span>
+      <pre><span class="kw">let</span> <span class="var">x</span>      <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">100</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">speed</span>  <span class="kw">of</span> <span class="type">float</span>  <span class="op">=</span> <span class="num">2.5</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">name</span>   <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"Player"</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">alive</span>  <span class="kw">of</span> <span class="type">bool</span>   <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>
 
-<span class="cm">// Reassignment — no `let` needed after declaration</span>
-<span class="var">score</span>  <span class="op">=</span> <span class="var">score</span> <span class="op">+</span> <span class="num">10</span><span class="op">;</span>
-<span class="var">name</span>   <span class="op">=</span> <span class="str">"Updated"</span><span class="op">;</span></pre>
+<span class="cm">// Reassignment</span>
+<span class="var">x</span> <span class="op">=</span> <span class="var">x</span> <span class="op">+</span> <span class="num">10</span><span class="op">;</span>
+<span class="var">name</span> <span class="op">=</span> <span class="str">"Hero"</span><span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- FUNCTIONS -->
   <section class="section" id="functions">
-    <div class="section-header">
-      <span class="section-number">07</span>
-      <h2>Functions</h2>
-    </div>
-    <p>Functions use <code>func</code>. Parameters follow the same <code>name of type</code> pattern. If a value is returned, add <code>returns TYPE;</code> after the closing brace.</p>
+    <div class="section-header"><span class="section-number">07</span><h2>Functions</h2></div>
+    <p>Declared with <code>func</code>. Parameters use <code>name of type</code>. Add <code>returns TYPE;</code> after the closing brace if the function returns a value.</p>
 
     <h3>No return value</h3>
     <div class="code-wrap">
@@ -817,139 +509,165 @@ flint</pre>
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">func</span> <span class="fn">add</span>(<span class="var">a</span> <span class="kw">of</span> <span class="type">int</span>, <span class="var">b</span> <span class="kw">of</span> <span class="type">int</span>) {
     <span class="kw">return</span> <span class="var">a</span> <span class="op">+</span> <span class="var">b</span><span class="op">;</span>
-} <span class="kw">returns</span> <span class="type">int</span><span class="op">;</span></pre>
-    </div>
+} <span class="kw">returns</span> <span class="type">int</span><span class="op">;</span>
 
-    <h3>Calling functions</h3>
-    <div class="code-wrap">
-      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="fn">greet</span>(<span class="str">"Alice"</span>)<span class="op">;</span>
-<span class="kw">let</span> <span class="var">result</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>)<span class="op">;</span>    <span class="cm">// result = 8</span></pre>
+<span class="kw">let</span> <span class="var">total</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>)<span class="op">;</span>   <span class="cm">// 8</span></pre>
     </div>
 
     <div class="callout info">
-      <strong>Note:</strong> The <code>returns TYPE;</code> clause goes <em>after</em> the closing <code>}</code>, not inside the function body.
+      <strong>Note:</strong> <code>returns TYPE;</code> goes <em>after</em> the closing <code>}</code>, not inside the function body.
+    </div>
+  </section>
+
+  <!-- CONTROL FLOW -->
+  <section class="section" id="control-flow">
+    <div class="section-header"><span class="section-number">08</span><h2>Control Flow</h2></div>
+    <p>Flint has <code>if</code> / <code>else</code> and <code>while</code>. No parentheses around conditions — just write the expression directly.</p>
+
+    <h3>if / else</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">syntax</span></div>
+      <pre><span class="kw">if</span> CONDITION {
+    <span class="cm">// runs when condition is non-zero / non-empty</span>
+} <span class="kw">else</span> {
+    <span class="cm">// optional else block</span>
+}</pre>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">score</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">42</span><span class="op">;</span>
+
+<span class="kw">if</span> <span class="var">score</span> <span class="op">></span> <span class="num">50</span> {
+    <span class="fn">print</span>(<span class="str">"You win!"</span>)<span class="op">;</span>
+} <span class="kw">else</span> {
+    <span class="fn">print</span>(<span class="str">"Keep trying."</span>)<span class="op">;</span>
+}
+
+<span class="cm">// Equality and comparison operators</span>
+<span class="kw">if</span> <span class="var">score</span> <span class="op">==</span> <span class="num">100</span> { <span class="fn">print</span>(<span class="str">"Perfect!"</span>)<span class="op">;</span> }
+<span class="kw">if</span> <span class="var">score</span> <span class="op">!=</span> <span class="num">0</span>   { <span class="fn">print</span>(<span class="str">"Not zero."</span>)<span class="op">;</span> }
+<span class="kw">if</span> <span class="var">score</span> <span class="op">>=</span> <span class="num">40</span>  { <span class="fn">print</span>(<span class="str">"Almost there."</span>)<span class="op">;</span> }</pre>
+    </div>
+
+    <h3>while</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">i</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+
+<span class="kw">while</span> <span class="var">i</span> <span class="op"><</span> <span class="num">5</span> {
+    <span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">i</span>))<span class="op">;</span>
+    <span class="var">i</span> <span class="op">=</span> <span class="var">i</span> <span class="op">+</span> <span class="num">1</span><span class="op">;</span>
+}</pre>
+    </div>
+
+    <h3>Truthy values</h3>
+    <p>Conditions are truthy when they are a <strong>non-zero number</strong> or a <strong>non-empty string</strong>. Zero and <code>""</code> are falsy. Since <code>true</code> compiles to <code>1</code> and <code>false</code> to <code>0</code>, you can use them directly:</p>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">alive</span> <span class="kw">of</span> <span class="type">bool</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>
+<span class="kw">if</span> <span class="var">alive</span> { <span class="fn">print</span>(<span class="str">"Still going!"</span>)<span class="op">;</span> }
+
+<span class="cm">// key_down returns 1 (true) or 0 (false) — use directly in if</span>
+<span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>) { <span class="var">x</span> <span class="op">=</span> <span class="var">x</span> <span class="op">-</span> <span class="num">4</span><span class="op">;</span> }</pre>
     </div>
   </section>
 
   <!-- EXPRESSIONS -->
   <section class="section" id="expressions">
-    <div class="section-header">
-      <span class="section-number">08</span>
-      <h2>Expressions &amp; Operators</h2>
-    </div>
-    <p>Flint supports standard arithmetic and comparison. Operator precedence follows the usual rules — use parentheses to be explicit.</p>
+    <div class="section-header"><span class="section-number">09</span><h2>Expressions &amp; Operators</h2></div>
 
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Operator</th><th>Meaning</th></tr></thead>
+        <thead><tr><th>Operator</th><th>Meaning</th><th>Works on</th></tr></thead>
         <tbody>
-          <tr><td><code>+</code></td><td>Addition, or string concatenation</td></tr>
-          <tr><td><code>-</code></td><td>Subtraction</td></tr>
-          <tr><td><code>*</code></td><td>Multiplication</td></tr>
-          <tr><td><code>/</code></td><td>Division</td></tr>
-          <tr><td><code>%</code></td><td>Modulo (remainder)</td></tr>
-          <tr><td><code>&lt;</code></td><td>Less than</td></tr>
-          <tr><td><code>&gt;</code></td><td>Greater than</td></tr>
+          <tr><td><code>+</code></td><td>Addition</td><td>numbers; also concatenates strings</td></tr>
+          <tr><td><code>-</code></td><td>Subtraction</td><td>numbers</td></tr>
+          <tr><td><code>*</code></td><td>Multiplication</td><td>numbers</td></tr>
+          <tr><td><code>/</code></td><td>Division</td><td>numbers</td></tr>
+          <tr><td><code>%</code></td><td>Modulo</td><td>numbers</td></tr>
+          <tr><td><code>&lt;  &gt;  &lt;=  &gt;=</code></td><td>Comparison</td><td>numbers → returns 1 or 0</td></tr>
+          <tr><td><code>==  !=</code></td><td>Equality</td><td>numbers and strings → returns 1 or 0</td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">let</span> <span class="var">total</span>     <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">10</span> <span class="op">+</span> <span class="num">5</span> <span class="op">*</span> <span class="num">2</span><span class="op">;</span>           <span class="cm">// 20</span>
-<span class="kw">let</span> <span class="var">remainder</span> <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">17</span> <span class="op">%</span> <span class="num">5</span><span class="op">;</span>               <span class="cm">// 2</span>
-<span class="kw">let</span> <span class="var">label</span>     <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">total</span>)<span class="op">;</span>
-<span class="kw">let</span> <span class="var">val</span>       <span class="kw">of</span> <span class="type">float</span>  <span class="op">=</span> (<span class="num">3.0</span> <span class="op">+</span> <span class="num">4.0</span>) <span class="op">*</span> <span class="num">2.0</span><span class="op">;</span>    <span class="cm">// 14.0</span></pre>
+      <pre><span class="kw">let</span> <span class="var">total</span> <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">10</span> <span class="op">+</span> <span class="num">5</span> <span class="op">*</span> <span class="num">2</span><span class="op">;</span>            <span class="cm">// 20</span>
+<span class="kw">let</span> <span class="var">label</span> <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">total</span>)<span class="op">;</span>
+<span class="kw">let</span> <span class="var">hit</span>   <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="var">total</span> <span class="op">==</span> <span class="num">20</span><span class="op">;</span>             <span class="cm">// 1 (true)</span>
+<span class="kw">let</span> <span class="var">big</span>   <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="var">total</span> <span class="op">>=</span> <span class="num">15</span><span class="op">;</span>             <span class="cm">// 1 (true)</span></pre>
     </div>
   </section>
 
   <!-- SPARK -->
   <section class="section" id="spark">
-    <div class="section-header">
-      <span class="section-number">09</span>
-      <h2>spark — Creating a Window</h2>
-    </div>
-    <p>Used in graphical modes to open the application window. Call it once, before the <code>flame</code> block.</p>
-
-    <div class="code-wrap">
-      <div class="code-header"><span class="code-lang">syntax</span></div>
-      <pre><span class="kw">spark</span> <span class="fn">window</span>(<span class="var">title</span>, <span class="var">width</span>, <span class="var">height</span>)<span class="op">;</span></pre>
-    </div>
-
+    <div class="section-header"><span class="section-number">10</span><h2>spark — Creating a Window</h2></div>
+    <p>Opens the application window. Call once before the <code>flame</code> block. Only needed in graphical modes.</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">let</span> <span class="var">title</span>  <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"My App"</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">width</span>  <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">800</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">height</span> <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">600</span><span class="op">;</span>
-
-<span class="kw">spark</span> <span class="fn">window</span>(<span class="var">title</span>, <span class="var">width</span>, <span class="var">height</span>)<span class="op">;</span></pre>
+      <pre><span class="kw">spark</span> <span class="fn">window</span>(<span class="str">"My App"</span>, <span class="num">800</span>, <span class="num">600</span>)<span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- FLAME -->
   <section class="section" id="flame">
-    <div class="section-header">
-      <span class="section-number">10</span>
-      <h2>flame — The Main Loop</h2>
+    <div class="section-header"><span class="section-number">11</span><h2>flame — The Main Loop</h2></div>
+    <p>The <code>flame</code> block runs every frame. Variables declared inside it <strong>persist between frames</strong> — perfect for tracking player position, score, etc.</p>
+    <div class="callout">
+      <strong>Always call <code>clear()</code> first</strong> to erase the previous frame before drawing the new one.
     </div>
-    <p>The <code>flame</code> block is the heart of any graphical program. Its body runs repeatedly every frame, like a game loop. Always call <code>clear()</code> first to wipe the previous frame.</p>
-
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">flame</span> {
-    <span class="fn">clear</span>(<span class="str">"#000000"</span>)<span class="op">;</span>
-    <span class="fn">draw_rect</span>(<span class="num">100</span>, <span class="num">100</span>, <span class="num">50</span>, <span class="num">50</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
-    <span class="fn">draw_text</span>(<span class="str">"Hello!"</span>, <span class="num">10</span>, <span class="num">10</span>, <span class="num">20</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
-}</pre>
-    </div>
+      <pre><span class="kw">let</span> <span class="var">px</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">100</span><span class="op">;</span>
 
-    <div class="callout">
-      <strong>Remember:</strong> Call your own functions from inside <code>flame</code> to keep the loop body clean.
+<span class="kw">flame</span> {
+    <span class="fn">clear</span>(<span class="str">"#111122"</span>)<span class="op">;</span>
+
+    <span class="cm">// Move player on key press</span>
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowRight"</span>) { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">+</span> <span class="num">4</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>)  { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">-</span> <span class="num">4</span><span class="op">;</span> }
+
+    <span class="fn">draw_rect</span>(<span class="var">px</span>, <span class="num">300</span>, <span class="num">40</span>, <span class="num">40</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
+}</pre>
     </div>
   </section>
 
   <!-- BUILTINS: CONSOLE -->
   <section class="section" id="builtins-console">
-    <div class="section-header">
-      <span class="section-number">11</span>
-      <h2>Built-ins — Console</h2>
-    </div>
+    <div class="section-header"><span class="section-number">12</span><h2>Built-ins — Console</h2></div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td><code>print</code></td><td><code>print(value, ...)</code></td><td>Print values to the terminal</td></tr>
+          <tr><td><code>print</code></td><td><code>print(value, ...)</code></td><td>Print to the terminal (works in all modes)</td></tr>
         </tbody>
       </table>
     </div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="fn">print</span>(<span class="str">"Hello, world!"</span>)<span class="op">;</span>
-<span class="fn">print</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>))<span class="op">;</span></pre>
+      <pre><span class="fn">print</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>))<span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- BUILTINS: DRAWING -->
   <section class="section" id="builtins-drawing">
-    <div class="section-header">
-      <span class="section-number">12</span>
-      <h2>Built-ins — Drawing</h2>
-    </div>
-    <p>All drawing functions are used inside a <code>flame</code> block. Colors are CSS strings: <code>"#ff6b1a"</code>, <code>"red"</code>, <code>"rgba(255,100,0,0.5)"</code>.</p>
+    <div class="section-header"><span class="section-number">13</span><h2>Built-ins — Drawing</h2></div>
+    <p>All drawing functions work inside <code>flame { }</code>. Colors are CSS strings: <code>"#ff6b1a"</code>, <code>"red"</code>, <code>"rgba(255,100,0,0.5)"</code>.</p>
 
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Function</th><th>Signature</th></tr></thead>
+        <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td><code>clear</code></td><td><code>clear(color?)</code></td></tr>
-          <tr><td><code>set_color</code></td><td><code>set_color(color)</code></td></tr>
-          <tr><td><code>draw_rect</code></td><td><code>draw_rect(x, y, w, h, color?)</code></td></tr>
-          <tr><td><code>draw_rect_outline</code></td><td><code>draw_rect_outline(x, y, w, h, color?)</code></td></tr>
-          <tr><td><code>draw_circle</code></td><td><code>draw_circle(x, y, r, color?)</code></td></tr>
-          <tr><td><code>draw_circle_outline</code></td><td><code>draw_circle_outline(x, y, r, color?)</code></td></tr>
-          <tr><td><code>draw_line</code></td><td><code>draw_line(x1, y1, x2, y2, color?)</code></td></tr>
-          <tr><td><code>draw_text</code></td><td><code>draw_text(text, x, y, size?, color?)</code></td></tr>
+          <tr><td><code>clear</code></td><td><code>clear(color?)</code></td><td>Fill the entire canvas. Default: black.</td></tr>
+          <tr><td><code>set_color</code></td><td><code>set_color(color)</code></td><td>Set fill and stroke color globally.</td></tr>
+          <tr><td><code>draw_rect</code></td><td><code>draw_rect(x, y, w, h, color?)</code></td><td>Filled rectangle.</td></tr>
+          <tr><td><code>draw_rect_outline</code></td><td><code>draw_rect_outline(x, y, w, h, color?)</code></td><td>Rectangle outline only.</td></tr>
+          <tr><td><code>draw_circle</code></td><td><code>draw_circle(x, y, r, color?)</code></td><td>Filled circle. x/y is the center.</td></tr>
+          <tr><td><code>draw_circle_outline</code></td><td><code>draw_circle_outline(x, y, r, color?)</code></td><td>Circle outline only.</td></tr>
+          <tr><td><code>draw_line</code></td><td><code>draw_line(x1, y1, x2, y2, color?)</code></td><td>Line between two points.</td></tr>
+          <tr><td><code>draw_text</code></td><td><code>draw_text(text, x, y, size?, color?)</code></td><td>Text. size defaults to 16px.</td></tr>
         </tbody>
       </table>
     </div>
@@ -959,82 +677,145 @@ flint</pre>
       <pre><span class="fn">clear</span>(<span class="str">"#1a1a2e"</span>)<span class="op">;</span>
 <span class="fn">draw_rect</span>(<span class="num">50</span>, <span class="num">50</span>, <span class="num">200</span>, <span class="num">100</span>, <span class="str">"#e94560"</span>)<span class="op">;</span>
 <span class="fn">draw_rect_outline</span>(<span class="num">50</span>, <span class="num">50</span>, <span class="num">200</span>, <span class="num">100</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
-<span class="fn">draw_circle</span>(<span class="num">400</span>, <span class="num">300</span>, <span class="num">60</span>, <span class="str">"#0f3460"</span>)<span class="op">;</span>
+<span class="fn">draw_circle</span>(<span class="num">400</span>, <span class="num">300</span>, <span class="num">60</span>, <span class="str">"#ffaa33"</span>)<span class="op">;</span>
 <span class="fn">draw_line</span>(<span class="num">0</span>, <span class="num">0</span>, <span class="num">800</span>, <span class="num">600</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
 <span class="fn">draw_text</span>(<span class="str">"Score: 0"</span>, <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span></pre>
     </div>
   </section>
 
-  <!-- BUILTINS: MATH -->
-  <section class="section" id="builtins-math">
-    <div class="section-header">
-      <span class="section-number">13</span>
-      <h2>Built-ins — Math</h2>
+  <!-- BUILTINS: INPUT -->
+  <section class="section" id="builtins-input">
+    <div class="section-header"><span class="section-number">14</span><h2>Built-ins — Input</h2></div>
+    <p>All input functions are called inside <code>flame { }</code>. They return <code>1</code> (true) or <code>0</code> (false) so you can use them directly in <code>if</code> conditions.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>key_down</code></td><td><code>key_down(key) → int</code></td><td>Returns <code>1</code> every frame the key is held down.</td></tr>
+          <tr><td><code>key_pressed</code></td><td><code>key_pressed(key) → int</code></td><td>Returns <code>1</code> only on the <strong>first frame</strong> the key is pressed. Great for jumps, actions.</td></tr>
+          <tr><td><code>mouse_x</code></td><td><code>mouse_x() → int</code></td><td>Current mouse X position in the window.</td></tr>
+          <tr><td><code>mouse_y</code></td><td><code>mouse_y() → int</code></td><td>Current mouse Y position in the window.</td></tr>
+          <tr><td><code>mouse_down</code></td><td><code>mouse_down() → int</code></td><td>Returns <code>1</code> every frame the mouse button is held.</td></tr>
+          <tr><td><code>mouse_pressed</code></td><td><code>mouse_pressed() → int</code></td><td>Returns <code>1</code> only on the first frame the button is clicked.</td></tr>
+        </tbody>
+      </table>
     </div>
 
+    <h3>Key names</h3>
+    <p>Key names follow the standard <a href="https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values" style="color:var(--ember)">DOM KeyboardEvent.key</a> spec. Common ones:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Key</th><th>String to pass</th></tr></thead>
+        <tbody>
+          <tr><td>Arrow keys</td><td><code>"ArrowUp"</code> <code>"ArrowDown"</code> <code>"ArrowLeft"</code> <code>"ArrowRight"</code></td></tr>
+          <tr><td>Space bar</td><td><code>" "</code> (a single space)</td></tr>
+          <tr><td>Letters</td><td><code>"a"</code> <code>"b"</code> … <code>"z"</code> (lowercase)</td></tr>
+          <tr><td>Shift, Ctrl, Alt</td><td><code>"Shift"</code> <code>"Control"</code> <code>"Alt"</code></td></tr>
+          <tr><td>Enter</td><td><code>"Enter"</code></td></tr>
+          <tr><td>Escape</td><td><code>"Escape"</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Keyboard movement</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">px</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">400</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">py</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">300</span><span class="op">;</span>
+
+<span class="kw">flame</span> {
+    <span class="fn">clear</span>(<span class="str">"#000000"</span>)<span class="op">;</span>
+
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowRight"</span>) { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">+</span> <span class="num">4</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>)  { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">-</span> <span class="num">4</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowUp"</span>)    { <span class="var">py</span> <span class="op">=</span> <span class="var">py</span> <span class="op">-</span> <span class="num">4</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowDown"</span>)  { <span class="var">py</span> <span class="op">=</span> <span class="var">py</span> <span class="op">+</span> <span class="num">4</span><span class="op">;</span> }
+
+    <span class="fn">draw_circle</span>(<span class="var">px</span>, <span class="var">py</span>, <span class="num">20</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
+}</pre>
+    </div>
+
+    <h3>Mouse drawing</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">flame</span> {
+    <span class="kw">if</span> <span class="input-fn">mouse_down</span>() {
+        <span class="kw">let</span> <span class="var">mx</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="input-fn">mouse_x</span>()<span class="op">;</span>
+        <span class="kw">let</span> <span class="var">my</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="input-fn">mouse_y</span>()<span class="op">;</span>
+        <span class="fn">draw_circle</span>(<span class="var">mx</span>, <span class="var">my</span>, <span class="num">10</span>, <span class="str">"#ffaa33"</span>)<span class="op">;</span>
+    }
+}
+
+<span class="cm">// key_pressed — fires only on the frame the key goes down</span>
+<span class="kw">let</span> <span class="var">jumped</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+<span class="kw">flame</span> {
+    <span class="kw">if</span> <span class="input-fn">key_pressed</span>(<span class="str">" "</span>) { <span class="var">jumped</span> <span class="op">=</span> <span class="num">1</span><span class="op">;</span> }
+}</pre>
+    </div>
+  </section>
+
+  <!-- BUILTINS: MATH -->
+  <section class="section" id="builtins-math">
+    <div class="section-header"><span class="section-number">15</span><h2>Built-ins — Math</h2></div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Function</th><th>Signature</th><th>Returns</th></tr></thead>
         <tbody>
-          <tr><td><code>sqrt</code></td><td><code>sqrt(n)</code></td><td><code>float</code></td></tr>
+          <tr><td><code>sqrt</code></td><td><code>sqrt(n)</code></td><td>float</td></tr>
           <tr><td><code>abs</code></td><td><code>abs(n)</code></td><td>number</td></tr>
-          <tr><td><code>floor</code></td><td><code>floor(n)</code></td><td><code>int</code></td></tr>
-          <tr><td><code>ceil</code></td><td><code>ceil(n)</code></td><td><code>int</code></td></tr>
-          <tr><td><code>round</code></td><td><code>round(n)</code></td><td><code>int</code></td></tr>
+          <tr><td><code>floor</code></td><td><code>floor(n)</code></td><td>int</td></tr>
+          <tr><td><code>ceil</code></td><td><code>ceil(n)</code></td><td>int</td></tr>
+          <tr><td><code>round</code></td><td><code>round(n)</code></td><td>int</td></tr>
           <tr><td><code>min</code></td><td><code>min(a, b, ...)</code></td><td>number</td></tr>
           <tr><td><code>max</code></td><td><code>max(a, b, ...)</code></td><td>number</td></tr>
         </tbody>
       </table>
     </div>
-
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">let</span> <span class="var">root</span>    <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">sqrt</span>(<span class="num">16.0</span>)<span class="op">;</span>              <span class="cm">// 4.0</span>
-<span class="kw">let</span> <span class="var">clamped</span> <span class="kw">of</span> <span class="type">int</span>   <span class="op">=</span> <span class="fn">min</span>(<span class="var">score</span>, <span class="num">100</span>)<span class="op">;</span>
-<span class="kw">let</span> <span class="var">dist</span>    <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">sqrt</span>(<span class="var">dx</span> <span class="op">*</span> <span class="var">dx</span> <span class="op">+</span> <span class="var">dy</span> <span class="op">*</span> <span class="var">dy</span>)<span class="op">;</span></pre>
+      <pre><span class="kw">let</span> <span class="var">dist</span>    <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">sqrt</span>(<span class="var">dx</span> <span class="op">*</span> <span class="var">dx</span> <span class="op">+</span> <span class="var">dy</span> <span class="op">*</span> <span class="var">dy</span>)<span class="op">;</span>
+<span class="kw">let</span> <span class="var">clamped</span> <span class="kw">of</span> <span class="type">int</span>   <span class="op">=</span> <span class="fn">min</span>(<span class="fn">max</span>(<span class="var">score</span>, <span class="num">0</span>), <span class="num">100</span>)<span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- BUILTINS: CONVERSION -->
   <section class="section" id="builtins-convert">
-    <div class="section-header">
-      <span class="section-number">14</span>
-      <h2>Built-ins — Conversion</h2>
-    </div>
-
+    <div class="section-header"><span class="section-number">16</span><h2>Built-ins — Conversion</h2></div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Function</th><th>Signature</th><th>Returns</th></tr></thead>
         <tbody>
-          <tr><td><code>to_string</code></td><td><code>to_string(value)</code></td><td><code>string</code></td></tr>
+          <tr><td><code>to_string</code></td><td><code>to_string(value)</code></td><td>string</td></tr>
           <tr><td><code>to_number</code></td><td><code>to_number(value)</code></td><td>number</td></tr>
         </tbody>
       </table>
     </div>
-
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">let</span> <span class="var">s</span> <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="fn">to_string</span>(<span class="num">42</span>)<span class="op">;</span>      <span class="cm">// "42"</span>
-<span class="kw">let</span> <span class="var">n</span> <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="fn">to_number</span>(<span class="str">"99"</span>)<span class="op">;</span>     <span class="cm">// 99</span></pre>
+      <pre><span class="fn">draw_text</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>), <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#fff"</span>)<span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- EXAMPLE: CLI -->
   <section class="section" id="example-cli">
-    <div class="section-header">
-      <span class="section-number">15</span>
-      <h2>Example — CLI Program</h2>
-    </div>
+    <div class="section-header"><span class="section-number">17</span><h2>Example — CLI Program</h2></div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">ignite</span> cli<span class="op">;</span>
 
-<span class="kw">func</span> <span class="fn">multiply</span>(<span class="var">a</span> <span class="kw">of</span> <span class="type">int</span>, <span class="var">b</span> <span class="kw">of</span> <span class="type">int</span>) {
-    <span class="kw">return</span> <span class="var">a</span> <span class="op">*</span> <span class="var">b</span><span class="op">;</span>
-} <span class="kw">returns</span> <span class="type">int</span><span class="op">;</span>
+<span class="kw">func</span> <span class="fn">fizzbuzz</span>(<span class="var">n</span> <span class="kw">of</span> <span class="type">int</span>) {
+    <span class="kw">let</span> <span class="var">i</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">1</span><span class="op">;</span>
+    <span class="kw">while</span> <span class="var">i</span> <span class="op">&lt;=</span> <span class="var">n</span> {
+        <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">15</span> <span class="op">==</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="str">"FizzBuzz"</span>)<span class="op">;</span> }
+        <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">3</span>  <span class="op">==</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="str">"Fizz"</span>)<span class="op">;</span> }
+        <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">5</span>  <span class="op">==</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="str">"Buzz"</span>)<span class="op">;</span> }
+        <span class="var">i</span> <span class="op">=</span> <span class="var">i</span> <span class="op">+</span> <span class="num">1</span><span class="op">;</span>
+    }
+}
 
-<span class="kw">let</span> <span class="var">result</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">multiply</span>(<span class="num">6</span>, <span class="num">7</span>)<span class="op">;</span>
-<span class="fn">print</span>(<span class="str">"Result: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">result</span>))<span class="op">;</span>   <span class="cm">// Result: 42</span>
+<span class="fn">fizzbuzz</span>(<span class="num">20</span>)<span class="op">;</span>
 
 <span class="kw">ash</span><span class="op">;</span></pre>
     </div>
@@ -1042,27 +823,24 @@ flint</pre>
 
   <!-- EXAMPLE: WINDOW -->
   <section class="section" id="example-window">
-    <div class="section-header">
-      <span class="section-number">16</span>
-      <h2>Example — Window Application</h2>
-    </div>
+    <div class="section-header"><span class="section-number">18</span><h2>Example — Window Application</h2></div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">ignite</span> window_app<span class="op">;</span>
 
-<span class="kw">let</span> <span class="var">title</span>  <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"My Window"</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">width</span>  <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">800</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">height</span> <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">600</span><span class="op">;</span>
+<span class="kw">spark</span> <span class="fn">window</span>(<span class="str">"My Window"</span>, <span class="num">800</span>, <span class="num">600</span>)<span class="op">;</span>
 
-<span class="kw">spark</span> <span class="fn">window</span>(<span class="var">title</span>, <span class="var">width</span>, <span class="var">height</span>)<span class="op">;</span>
-
-<span class="kw">let</span> <span class="var">x</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">100</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">y</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">100</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">mx</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">my</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
 
 <span class="kw">flame</span> {
-    <span class="fn">clear</span>(<span class="str">"#0a0a0a"</span>)<span class="op">;</span>
-    <span class="fn">draw_circle</span>(<span class="var">x</span>, <span class="var">y</span>, <span class="num">30</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
-    <span class="fn">draw_text</span>(<span class="str">"Flint App"</span>, <span class="num">10</span>, <span class="num">10</span>, <span class="num">20</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
+    <span class="fn">clear</span>(<span class="str">"#0a0a14"</span>)<span class="op">;</span>
+
+    <span class="var">mx</span> <span class="op">=</span> <span class="input-fn">mouse_x</span>()<span class="op">;</span>
+    <span class="var">my</span> <span class="op">=</span> <span class="input-fn">mouse_y</span>()<span class="op">;</span>
+
+    <span class="fn">draw_circle</span>(<span class="var">mx</span>, <span class="var">my</span>, <span class="num">20</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
+    <span class="fn">draw_text</span>(<span class="str">"Move your mouse!"</span>, <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#aaaacc"</span>)<span class="op">;</span>
 }
 
 <span class="kw">ash</span><span class="op">;</span></pre>
@@ -1071,29 +849,45 @@ flint</pre>
 
   <!-- EXAMPLE: GAME -->
   <section class="section" id="example-game">
-    <div class="section-header">
-      <span class="section-number">17</span>
-      <h2>Example — Game Boilerplate</h2>
-    </div>
+    <div class="section-header"><span class="section-number">19</span><h2>Example — Interactive Game</h2></div>
+    <p>A complete moving-player game using keyboard input, score tracking, and a HUD.</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">ignite</span> game<span class="op">;</span>
 
 <span class="kw">spark</span> <span class="fn">window</span>(<span class="str">"My Game"</span>, <span class="num">800</span>, <span class="num">600</span>)<span class="op">;</span>
 
-<span class="cm">// Player state</span>
+<span class="cm">// Player state (persists across frames)</span>
 <span class="kw">let</span> <span class="var">px</span>    <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">400</span><span class="op">;</span>
 <span class="kw">let</span> <span class="var">py</span>    <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">300</span><span class="op">;</span>
 <span class="kw">let</span> <span class="var">score</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">speed</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">4</span><span class="op">;</span>
 
 <span class="kw">func</span> <span class="fn">draw_hud</span>() {
     <span class="fn">draw_text</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>), <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
+    <span class="fn">draw_text</span>(<span class="str">"Arrow keys to move"</span>, <span class="num">10</span>, <span class="num">34</span>, <span class="num">13</span>, <span class="str">"#666688"</span>)<span class="op">;</span>
 }
 
 <span class="kw">flame</span> {
     <span class="fn">clear</span>(<span class="str">"#111122"</span>)<span class="op">;</span>
+
+    <span class="cm">// Movement</span>
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowRight"</span>) { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">+</span> <span class="var">speed</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>)  { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">-</span> <span class="var">speed</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowUp"</span>)    { <span class="var">py</span> <span class="op">=</span> <span class="var">py</span> <span class="op">-</span> <span class="var">speed</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowDown"</span>)  { <span class="var">py</span> <span class="op">=</span> <span class="var">py</span> <span class="op">+</span> <span class="var">speed</span><span class="op">;</span> }
+
+    <span class="cm">// Score on space</span>
+    <span class="kw">if</span> <span class="input-fn">key_pressed</span>(<span class="str">" "</span>) { <span class="var">score</span> <span class="op">=</span> <span class="var">score</span> <span class="op">+</span> <span class="num">10</span><span class="op">;</span> }
+
+    <span class="cm">// Clamp to window bounds</span>
+    <span class="var">px</span> <span class="op">=</span> <span class="fn">max</span>(<span class="num">0</span>, <span class="fn">min</span>(<span class="var">px</span>, <span class="num">768</span>))<span class="op">;</span>
+    <span class="var">py</span> <span class="op">=</span> <span class="fn">max</span>(<span class="num">0</span>, <span class="fn">min</span>(<span class="var">py</span>, <span class="num">568</span>))<span class="op">;</span>
+
+    <span class="cm">// Draw player</span>
     <span class="fn">draw_rect</span>(<span class="var">px</span>, <span class="var">py</span>, <span class="num">32</span>, <span class="num">32</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
     <span class="fn">draw_rect_outline</span>(<span class="var">px</span>, <span class="var">py</span>, <span class="num">32</span>, <span class="num">32</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
+
     <span class="fn">draw_hud</span>()<span class="op">;</span>
 }
 
@@ -1103,61 +897,25 @@ flint</pre>
 
   <!-- QUICK REF -->
   <section class="section" id="quickref">
-    <div class="section-header">
-      <span class="section-number">18</span>
-      <h2>Quick Reference</h2>
-    </div>
-    <p>Everything you need at a glance.</p>
+    <div class="section-header"><span class="section-number">20</span><h2>Quick Reference</h2></div>
 
     <div class="qref-grid">
-      <div class="qref-card">
-        <div class="qref-label">Run Mode</div>
-        <code>ignite MODE;</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Import</div>
-        <code>kindle MODULE;</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Declare Variable</div>
-        <code>let name of TYPE = value;</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Reassign</div>
-        <code>name = newValue;</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Function</div>
-        <code>func name(p of T) { }</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Function + Return</div>
-        <code>func name(p of T) { } returns T;</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Return</div>
-        <code>return value;</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Window</div>
-        <code>spark window(title, w, h);</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Main Loop</div>
-        <code>flame { }</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">End Program</div>
-        <code>ash;</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Comment</div>
-        <code>// single line only</code>
-      </div>
-      <div class="qref-card">
-        <div class="qref-label">Types</div>
-        <code>int  float  string  bool  void</code>
-      </div>
+      <div class="qref-card"><div class="qref-label">Run Mode</div><code>ignite MODE;</code></div>
+      <div class="qref-card"><div class="qref-label">Import</div><code>kindle MODULE;</code></div>
+      <div class="qref-card"><div class="qref-label">Declare Variable</div><code>let name of TYPE = value;</code></div>
+      <div class="qref-card"><div class="qref-label">Reassign</div><code>name = newValue;</code></div>
+      <div class="qref-card"><div class="qref-label">Function</div><code>func name(p of T) { }</code></div>
+      <div class="qref-card"><div class="qref-label">Function + Return</div><code>func name(p of T) { } returns T;</code></div>
+      <div class="qref-card"><div class="qref-label">If / Else</div><code>if COND { } else { }</code></div>
+      <div class="qref-card"><div class="qref-label">While</div><code>while COND { }</code></div>
+      <div class="qref-card"><div class="qref-label">Window</div><code>spark window(title, w, h);</code></div>
+      <div class="qref-card"><div class="qref-label">Main Loop</div><code>flame { }</code></div>
+      <div class="qref-card"><div class="qref-label">Key Held</div><code>key_down("ArrowLeft")</code></div>
+      <div class="qref-card"><div class="qref-label">Key Once</div><code>key_pressed(" ")</code></div>
+      <div class="qref-card"><div class="qref-label">Mouse Pos</div><code>mouse_x()  mouse_y()</code></div>
+      <div class="qref-card"><div class="qref-label">Mouse Click</div><code>mouse_pressed()</code></div>
+      <div class="qref-card"><div class="qref-label">End Program</div><code>ash;</code></div>
+      <div class="qref-card"><div class="qref-label">Types</div><code>int  float  string  bool  void</code></div>
     </div>
   </section>
 
@@ -1167,16 +925,11 @@ flint</pre>
 <script>
   function copy(btn) {
     const pre = btn.closest('.code-wrap').querySelector('pre');
-    const text = pre.innerText;
-    navigator.clipboard.writeText(text).then(() => {
+    navigator.clipboard.writeText(pre.innerText).then(() => {
       btn.textContent = 'copied!';
       btn.style.color = '#88dd88';
       btn.style.borderColor = '#88dd88';
-      setTimeout(() => {
-        btn.textContent = 'copy';
-        btn.style.color = '';
-        btn.style.borderColor = '';
-      }, 1800);
+      setTimeout(() => { btn.textContent = 'copy'; btn.style.color = ''; btn.style.borderColor = ''; }, 1800);
     });
   }
 
@@ -1185,21 +938,16 @@ flint</pre>
     el.classList.add('active');
   }
 
-  // Highlight active section on scroll
   const sections = document.querySelectorAll('.section');
   const navLinks = document.querySelectorAll('.nav a');
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const id = entry.target.id;
-        navLinks.forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === '#' + id);
-        });
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
       }
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
-
   sections.forEach(s => observer.observe(s));
 </script>
 </body>
