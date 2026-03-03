@@ -193,7 +193,9 @@
   .type { color: #cc88ff; }
   .var  { color: #e8e8f0; }
   .op   { color: #ff9966; }
-  .input-fn { color: #44ddcc; } /* teal for input functions */
+  .input-fn { color: #44ddcc; }
+  .math-fn  { color: #aa88ff; }
+  .const    { color: #ff88cc; }
 
   /* ── TABLES ── */
   .table-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: 8px; border: 1px solid var(--border); }
@@ -295,7 +297,12 @@
       <a href="#variables" onclick="setActive(this)"><span class="nav-dot"></span>Variables</a>
       <a href="#functions" onclick="setActive(this)"><span class="nav-dot"></span>Functions</a>
       <a href="#control-flow" onclick="setActive(this)"><span class="nav-dot"></span>Control Flow</a>
+      <a href="#for-loop" onclick="setActive(this)"><span class="nav-dot"></span>for Loop</a>
+      <a href="#break" onclick="setActive(this)"><span class="nav-dot"></span>break</a>
       <a href="#expressions" onclick="setActive(this)"><span class="nav-dot"></span>Expressions</a>
+      <a href="#logical" onclick="setActive(this)"><span class="nav-dot"></span>Logical Operators</a>
+      <a href="#arrays" onclick="setActive(this)"><span class="nav-dot"></span>Arrays</a>
+      <a href="#structs" onclick="setActive(this)"><span class="nav-dot"></span>Structs</a>
     </div>
     <div class="nav-group">
       <div class="nav-group-label">Graphics</div>
@@ -308,7 +315,12 @@
       <a href="#builtins-drawing" onclick="setActive(this)"><span class="nav-dot"></span>Drawing</a>
       <a href="#builtins-input" onclick="setActive(this)"><span class="nav-dot"></span>Input</a>
       <a href="#builtins-math" onclick="setActive(this)"><span class="nav-dot"></span>Math</a>
+      <a href="#builtins-random" onclick="setActive(this)"><span class="nav-dot"></span>Random</a>
+      <a href="#builtins-time" onclick="setActive(this)"><span class="nav-dot"></span>Time</a>
+      <a href="#builtins-arrays" onclick="setActive(this)"><span class="nav-dot"></span>Array Functions</a>
+      <a href="#builtins-strings" onclick="setActive(this)"><span class="nav-dot"></span>String Functions</a>
       <a href="#builtins-convert" onclick="setActive(this)"><span class="nav-dot"></span>Conversion</a>
+      <a href="#kindle-math" onclick="setActive(this)"><span class="nav-dot"></span>kindle math</a>
     </div>
     <div class="nav-group">
       <div class="nav-group-label">Examples</div>
@@ -410,9 +422,9 @@ flint</pre>
 <span class="kw">ignite</span> window_app<span class="op">;</span>
 
 <span class="cm">// 2. Import modules (optional)</span>
-<span class="kw">kindle</span> ui<span class="op">;</span>
+<span class="kw">kindle</span> math<span class="op">;</span>
 
-<span class="cm">// 3. Variables, functions</span>
+<span class="cm">// 3. Variables, structs, functions</span>
 <span class="kw">let</span> <span class="var">title</span> <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"My App"</span><span class="op">;</span>
 
 <span class="cm">// 4. Create a window (graphical modes only)</span>
@@ -450,12 +462,21 @@ flint</pre>
   <!-- KINDLE -->
   <section class="section" id="kindle">
     <div class="section-header"><span class="section-number">05</span><h2>kindle — Modules</h2></div>
-    <p>Import a module by name. Modules extend available functions.</p>
+    <p>Import a module by name. Modules unlock additional functions and constants. Place <code>kindle</code> statements near the top of your program, after <code>ignite</code>.</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">kindle</span> ui<span class="op">;</span>
-<span class="kw">kindle</span> math<span class="op">;</span></pre>
+      <pre><span class="kw">kindle</span> math<span class="op">;</span>   <span class="cm">// trig, lerp, clamp, PI, TAU, …</span></pre>
     </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Module</th><th>Adds</th></tr></thead>
+        <tbody>
+          <tr><td><code>math</code></td><td>Trigonometry, exponents, logarithms, <code>lerp</code>, <code>clamp</code>, <code>smoothstep</code>, constants <code>PI</code> <code>TAU</code> <code>E</code> <code>INF</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>See the <a href="#kindle-math" style="color:var(--ember)">kindle math</a> section for the full list of added functions.</p>
   </section>
 
   <!-- VARIABLES -->
@@ -474,6 +495,8 @@ flint</pre>
           <tr><td><code>float</code></td><td>Decimal number</td><td><code>let speed of float = 1.5;</code></td></tr>
           <tr><td><code>string</code></td><td>Text</td><td><code>let name of string = "Flint";</code></td></tr>
           <tr><td><code>bool</code></td><td>True or false</td><td><code>let active of bool = true;</code></td></tr>
+          <tr><td><code>int[]</code></td><td>Array of integers</td><td><code>let nums of int[] = [1, 2, 3];</code></td></tr>
+          <tr><td><code>string[]</code></td><td>Array of strings</td><td><code>let tags of string[] = ["a", "b"];</code></td></tr>
           <tr><td><code>void</code></td><td>No value (functions only)</td><td>—</td></tr>
         </tbody>
       </table>
@@ -514,6 +537,21 @@ flint</pre>
 <span class="kw">let</span> <span class="var">total</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">add</span>(<span class="num">3</span>, <span class="num">5</span>)<span class="op">;</span>   <span class="cm">// 8</span></pre>
     </div>
 
+    <h3>Array parameters</h3>
+    <p>Pass arrays to functions using the <code>type[]</code> parameter type.</p>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">func</span> <span class="fn">sum_all</span>(<span class="var">nums</span> <span class="kw">of</span> <span class="type">int[]</span>) {
+    <span class="kw">let</span> <span class="var">total</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+    <span class="kw">let</span> <span class="var">i</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+    <span class="kw">while</span> <span class="var">i</span> <span class="op">&lt;</span> <span class="fn">len</span>(<span class="var">nums</span>) {
+        <span class="var">total</span> <span class="op">=</span> <span class="var">total</span> <span class="op">+</span> <span class="var">nums</span>[<span class="var">i</span>]<span class="op">;</span>
+        <span class="var">i</span> <span class="op">=</span> <span class="var">i</span> <span class="op">+</span> <span class="num">1</span><span class="op">;</span>
+    }
+    <span class="kw">return</span> <span class="var">total</span><span class="op">;</span>
+} <span class="kw">returns</span> <span class="type">int</span><span class="op">;</span></pre>
+    </div>
+
     <div class="callout info">
       <strong>Note:</strong> <code>returns TYPE;</code> goes <em>after</em> the closing <code>}</code>, not inside the function body.
     </div>
@@ -521,14 +559,14 @@ flint</pre>
 
   <!-- CONTROL FLOW -->
   <section class="section" id="control-flow">
-    <div class="section-header"><span class="section-number">08</span><h2>Control Flow</h2></div>
+    <div class="section-header"><span class="section-number">08</span><h2>Control Flow — if / while</h2></div>
     <p>Flint has <code>if</code> / <code>else</code> and <code>while</code>. No parentheses around conditions — just write the expression directly.</p>
 
     <h3>if / else</h3>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">syntax</span></div>
       <pre><span class="kw">if</span> CONDITION {
-    <span class="cm">// runs when condition is non-zero / non-empty</span>
+    <span class="cm">// runs when condition is non-zero / non-empty / non-empty-array</span>
 } <span class="kw">else</span> {
     <span class="cm">// optional else block</span>
 }</pre>
@@ -544,7 +582,6 @@ flint</pre>
     <span class="fn">print</span>(<span class="str">"Keep trying."</span>)<span class="op">;</span>
 }
 
-<span class="cm">// Equality and comparison operators</span>
 <span class="kw">if</span> <span class="var">score</span> <span class="op">==</span> <span class="num">100</span> { <span class="fn">print</span>(<span class="str">"Perfect!"</span>)<span class="op">;</span> }
 <span class="kw">if</span> <span class="var">score</span> <span class="op">!=</span> <span class="num">0</span>   { <span class="fn">print</span>(<span class="str">"Not zero."</span>)<span class="op">;</span> }
 <span class="kw">if</span> <span class="var">score</span> <span class="op">>=</span> <span class="num">40</span>  { <span class="fn">print</span>(<span class="str">"Almost there."</span>)<span class="op">;</span> }</pre>
@@ -555,39 +592,113 @@ flint</pre>
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">let</span> <span class="var">i</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
 
-<span class="kw">while</span> <span class="var">i</span> <span class="op"><</span> <span class="num">5</span> {
+<span class="kw">while</span> <span class="var">i</span> <span class="op">&lt;</span> <span class="num">5</span> {
     <span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">i</span>))<span class="op">;</span>
     <span class="var">i</span> <span class="op">=</span> <span class="var">i</span> <span class="op">+</span> <span class="num">1</span><span class="op">;</span>
 }</pre>
     </div>
 
     <h3>Truthy values</h3>
-    <p>Conditions are truthy when they are a <strong>non-zero number</strong> or a <strong>non-empty string</strong>. Zero and <code>""</code> are falsy. Since <code>true</code> compiles to <code>1</code> and <code>false</code> to <code>0</code>, you can use them directly:</p>
+    <p>A condition is truthy when it is a <strong>non-zero number</strong>, a <strong>non-empty string</strong>, or a <strong>non-empty array</strong>. Zero, <code>""</code>, and empty arrays are falsy. Since <code>true</code> compiles to <code>1</code> and <code>false</code> to <code>0</code>, you can use them directly:</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">let</span> <span class="var">alive</span> <span class="kw">of</span> <span class="type">bool</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>
 <span class="kw">if</span> <span class="var">alive</span> { <span class="fn">print</span>(<span class="str">"Still going!"</span>)<span class="op">;</span> }
 
 <span class="cm">// key_down returns 1 (true) or 0 (false) — use directly in if</span>
-<span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>) { <span class="var">x</span> <span class="op">=</span> <span class="var">x</span> <span class="op">-</span> <span class="num">4</span><span class="op">;</span> }</pre>
+<span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>) { <span class="var">x</span> <span class="op">=</span> <span class="var">x</span> <span class="op">-</span> <span class="num">4</span><span class="op">;</span> }
+
+<span class="cm">// Non-empty array is truthy</span>
+<span class="kw">let</span> <span class="var">items</span> <span class="kw">of</span> <span class="type">int[]</span> <span class="op">=</span> [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]<span class="op">;</span>
+<span class="kw">if</span> <span class="var">items</span> { <span class="fn">print</span>(<span class="str">"Has items"</span>)<span class="op">;</span> }</pre>
+    </div>
+  </section>
+
+  <!-- FOR LOOP -->
+  <section class="section" id="for-loop">
+    <div class="section-header"><span class="section-number">09</span><h2>for Loop</h2></div>
+    <p>The <code>for</code> loop counts a variable from a start value up to (but not including) an end value. An optional <code>step</code> controls how much the counter changes each iteration — default is <code>1</code>. Use a negative step to count downwards.</p>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">syntax</span></div>
+      <pre><span class="kw">for</span> <span class="var">VAR</span> <span class="kw">from</span> START <span class="kw">to</span> END {
+    <span class="cm">// VAR goes START, START+1, … END-1</span>
+}
+
+<span class="kw">for</span> <span class="var">VAR</span> <span class="kw">from</span> START <span class="kw">to</span> END <span class="kw">step</span> STEP {
+    <span class="cm">// custom increment</span>
+}</pre>
+    </div>
+
+    <div class="callout info">
+      <strong>Exclusive upper bound:</strong> the loop variable never reaches <code>END</code>. To iterate indices <code>0</code> through <code>n-1</code>, write <code>for i from 0 to n</code>.
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="cm">// Print 0 through 4</span>
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">from</span> <span class="num">0</span> <span class="kw">to</span> <span class="num">5</span> {
+    <span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">i</span>))<span class="op">;</span>
+}
+
+<span class="cm">// Step by 2: 0, 2, 4, 6, 8</span>
+<span class="kw">for</span> <span class="var">n</span> <span class="kw">from</span> <span class="num">0</span> <span class="kw">to</span> <span class="num">10</span> <span class="kw">step</span> <span class="num">2</span> {
+    <span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">n</span>))<span class="op">;</span>
+}
+
+<span class="cm">// Count down: 5, 4, 3, 2, 1</span>
+<span class="kw">for</span> <span class="var">k</span> <span class="kw">from</span> <span class="num">5</span> <span class="kw">to</span> <span class="num">0</span> <span class="kw">step</span> <span class="op">-</span><span class="num">1</span> {
+    <span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">k</span>))<span class="op">;</span>
+}
+
+<span class="cm">// Iterate over an array by index</span>
+<span class="kw">let</span> <span class="var">scores</span> <span class="kw">of</span> <span class="type">int[]</span> <span class="op">=</span> [<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>]<span class="op">;</span>
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">from</span> <span class="num">0</span> <span class="kw">to</span> <span class="fn">len</span>(<span class="var">scores</span>) {
+    <span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">scores</span>[<span class="var">i</span>]))<span class="op">;</span>
+}</pre>
+    </div>
+  </section>
+
+  <!-- BREAK -->
+  <section class="section" id="break">
+    <div class="section-header"><span class="section-number">10</span><h2>break</h2></div>
+    <p><code>break</code> immediately exits the nearest enclosing <code>while</code> or <code>for</code> loop.</p>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="cm">// Find first even number in a list</span>
+<span class="kw">let</span> <span class="var">nums</span> <span class="kw">of</span> <span class="type">int[]</span> <span class="op">=</span> [<span class="num">1</span>, <span class="num">3</span>, <span class="num">4</span>, <span class="num">7</span>, <span class="num">8</span>]<span class="op">;</span>
+<span class="kw">let</span> <span class="var">found</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="op">-</span><span class="num">1</span><span class="op">;</span>
+
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">from</span> <span class="num">0</span> <span class="kw">to</span> <span class="fn">len</span>(<span class="var">nums</span>) {
+    <span class="kw">if</span> <span class="var">nums</span>[<span class="var">i</span>] <span class="op">%</span> <span class="num">2</span> <span class="op">==</span> <span class="num">0</span> {
+        <span class="var">found</span> <span class="op">=</span> <span class="var">nums</span>[<span class="var">i</span>]<span class="op">;</span>
+        <span class="kw">break</span><span class="op">;</span>
+    }
+}
+
+<span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">found</span>))<span class="op">;</span>   <span class="cm">// 4</span></pre>
     </div>
   </section>
 
   <!-- EXPRESSIONS -->
   <section class="section" id="expressions">
-    <div class="section-header"><span class="section-number">09</span><h2>Expressions &amp; Operators</h2></div>
+    <div class="section-header"><span class="section-number">11</span><h2>Expressions &amp; Operators</h2></div>
 
     <div class="table-wrap">
       <table>
         <thead><tr><th>Operator</th><th>Meaning</th><th>Works on</th></tr></thead>
         <tbody>
           <tr><td><code>+</code></td><td>Addition</td><td>numbers; also concatenates strings</td></tr>
-          <tr><td><code>-</code></td><td>Subtraction</td><td>numbers</td></tr>
+          <tr><td><code>-</code></td><td>Subtraction / unary negation</td><td>numbers</td></tr>
           <tr><td><code>*</code></td><td>Multiplication</td><td>numbers</td></tr>
           <tr><td><code>/</code></td><td>Division</td><td>numbers</td></tr>
           <tr><td><code>%</code></td><td>Modulo</td><td>numbers</td></tr>
           <tr><td><code>&lt;  &gt;  &lt;=  &gt;=</code></td><td>Comparison</td><td>numbers → returns 1 or 0</td></tr>
           <tr><td><code>==  !=</code></td><td>Equality</td><td>numbers and strings → returns 1 or 0</td></tr>
+          <tr><td><code>and</code></td><td>Logical AND (short-circuit)</td><td>any truthy values → 1 or 0</td></tr>
+          <tr><td><code>or</code></td><td>Logical OR (short-circuit)</td><td>any truthy values → 1 or 0</td></tr>
+          <tr><td><code>not</code></td><td>Logical NOT</td><td>any truthy value → 1 or 0</td></tr>
         </tbody>
       </table>
     </div>
@@ -596,64 +707,195 @@ flint</pre>
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">let</span> <span class="var">total</span> <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">10</span> <span class="op">+</span> <span class="num">5</span> <span class="op">*</span> <span class="num">2</span><span class="op">;</span>            <span class="cm">// 20</span>
 <span class="kw">let</span> <span class="var">label</span> <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">total</span>)<span class="op">;</span>
-<span class="kw">let</span> <span class="var">hit</span>   <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="var">total</span> <span class="op">==</span> <span class="num">20</span><span class="op">;</span>             <span class="cm">// 1 (true)</span>
-<span class="kw">let</span> <span class="var">big</span>   <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="var">total</span> <span class="op">>=</span> <span class="num">15</span><span class="op">;</span>             <span class="cm">// 1 (true)</span></pre>
+<span class="kw">let</span> <span class="var">neg</span>   <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="op">-</span><span class="var">total</span><span class="op">;</span>                  <span class="cm">// -20 (unary negation)</span>
+<span class="kw">let</span> <span class="var">hit</span>   <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="var">total</span> <span class="op">==</span> <span class="num">20</span><span class="op">;</span>             <span class="cm">// 1 (true)</span></pre>
+    </div>
+  </section>
+
+  <!-- LOGICAL OPERATORS -->
+  <section class="section" id="logical">
+    <div class="section-header"><span class="section-number">12</span><h2>Logical Operators</h2></div>
+    <p><code>and</code>, <code>or</code>, and <code>not</code> combine boolean conditions. They short-circuit: <code>and</code> stops if the left side is falsy; <code>or</code> stops if the left side is truthy.</p>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">alive</span>  <span class="kw">of</span> <span class="type">bool</span> <span class="op">=</span> <span class="kw">true</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">health</span> <span class="kw">of</span> <span class="type">int</span>  <span class="op">=</span> <span class="num">80</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">mana</span>   <span class="kw">of</span> <span class="type">int</span>  <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+
+<span class="cm">// and — both must be true</span>
+<span class="kw">if</span> <span class="var">alive</span> <span class="kw">and</span> <span class="var">health</span> <span class="op">></span> <span class="num">0</span> {
+    <span class="fn">print</span>(<span class="str">"Can act"</span>)<span class="op">;</span>
+}
+
+<span class="cm">// or — either can be true</span>
+<span class="kw">if</span> <span class="var">health</span> <span class="op">></span> <span class="num">50</span> <span class="kw">or</span> <span class="var">mana</span> <span class="op">></span> <span class="num">50</span> {
+    <span class="fn">print</span>(<span class="str">"Has resources"</span>)<span class="op">;</span>
+}
+
+<span class="cm">// not — inverts truthy/falsy</span>
+<span class="kw">if</span> <span class="kw">not</span> <span class="var">alive</span> {
+    <span class="fn">print</span>(<span class="str">"Game over"</span>)<span class="op">;</span>
+}
+
+<span class="cm">// Compound conditions</span>
+<span class="kw">if</span> (<span class="var">health</span> <span class="op">></span> <span class="num">0</span>) <span class="kw">and</span> (<span class="kw">not</span> <span class="var">mana</span> <span class="op">==</span> <span class="num">0</span>) {
+    <span class="fn">print</span>(<span class="str">"Can cast spell"</span>)<span class="op">;</span>
+}</pre>
+    </div>
+  </section>
+
+  <!-- ARRAYS -->
+  <section class="section" id="arrays">
+    <div class="section-header"><span class="section-number">13</span><h2>Arrays</h2></div>
+    <p>Arrays are ordered lists declared with a <code>type[]</code> annotation. Elements are accessed and assigned with <code>[index]</code> — zero-based. You can also index into a <code>string</code> to get a single character.</p>
+
+    <h3>Declaration &amp; literals</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">scores</span> <span class="kw">of</span> <span class="type">int[]</span>    <span class="op">=</span> [<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>]<span class="op">;</span>
+<span class="kw">let</span> <span class="var">names</span>  <span class="kw">of</span> <span class="type">string[]</span> <span class="op">=</span> [<span class="str">"Alice"</span>, <span class="str">"Bob"</span>]<span class="op">;</span>
+<span class="kw">let</span> <span class="var">empty</span>  <span class="kw">of</span> <span class="type">int[]</span>    <span class="op">=</span> []<span class="op">;</span>          <span class="cm">// start empty</span></pre>
+    </div>
+
+    <h3>Reading &amp; writing</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">first</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="var">scores</span>[<span class="num">0</span>]<span class="op">;</span>   <span class="cm">// 10</span>
+<span class="var">scores</span>[<span class="num">1</span>] <span class="op">=</span> <span class="num">99</span><span class="op">;</span>                  <span class="cm">// update index 1</span>
+
+<span class="cm">// String indexing — returns single character</span>
+<span class="kw">let</span> <span class="var">word</span> <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"hello"</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">ch</span>   <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="var">word</span>[<span class="num">0</span>]<span class="op">;</span>    <span class="cm">// "h"</span></pre>
+    </div>
+
+    <h3>Looping over an array</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">for</span> <span class="var">i</span> <span class="kw">from</span> <span class="num">0</span> <span class="kw">to</span> <span class="fn">len</span>(<span class="var">scores</span>) {
+    <span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">scores</span>[<span class="var">i</span>]))<span class="op">;</span>
+}</pre>
+    </div>
+
+    <div class="callout info">
+      <strong>See also:</strong> the <a href="#builtins-arrays" style="color:#66aaff">Array Functions</a> section for <code>push</code>, <code>pop</code>, <code>len</code>, <code>remove</code>, <code>insert</code>, and <code>concat</code>.
+    </div>
+  </section>
+
+  <!-- STRUCTS -->
+  <section class="section" id="structs">
+    <div class="section-header"><span class="section-number">14</span><h2>Structs</h2></div>
+    <p>Structs group related fields under a named type. Declare with <code>struct</code>, then create instances anywhere using the struct's name followed by <code>{ field = value }</code>. Access or mutate fields with dot notation.</p>
+
+    <h3>Declaration</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">syntax</span></div>
+      <pre><span class="kw">struct</span> <span class="type">NAME</span> {
+    <span class="var">field1</span> <span class="kw">of</span> <span class="type">TYPE</span><span class="op">;</span>
+    <span class="var">field2</span> <span class="kw">of</span> <span class="type">TYPE</span><span class="op">;</span>
+}</pre>
+    </div>
+
+    <h3>Instantiation &amp; access</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">struct</span> <span class="type">Vec2</span> {
+    <span class="var">x</span> <span class="kw">of</span> <span class="type">float</span><span class="op">;</span>
+    <span class="var">y</span> <span class="kw">of</span> <span class="type">float</span><span class="op">;</span>
+}
+
+<span class="kw">let</span> <span class="var">pos</span> <span class="kw">of</span> <span class="type">Vec2</span> <span class="op">=</span> Vec2 { <span class="var">x</span> <span class="op">=</span> <span class="num">100.0</span>, <span class="var">y</span> <span class="op">=</span> <span class="num">200.0</span> }<span class="op">;</span>
+
+<span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">pos</span>.<span class="var">x</span>))<span class="op">;</span>   <span class="cm">// 100</span>
+<span class="var">pos</span>.<span class="var">x</span> <span class="op">=</span> <span class="var">pos</span>.<span class="var">x</span> <span class="op">+</span> <span class="num">5.0</span><span class="op">;</span>        <span class="cm">// mutate field</span></pre>
+    </div>
+
+    <h3>Structs in functions</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">struct</span> <span class="type">Rect</span> {
+    <span class="var">x</span> <span class="kw">of</span> <span class="type">int</span><span class="op">;</span> <span class="var">y</span> <span class="kw">of</span> <span class="type">int</span><span class="op">;</span>
+    <span class="var">w</span> <span class="kw">of</span> <span class="type">int</span><span class="op">;</span> <span class="var">h</span> <span class="kw">of</span> <span class="type">int</span><span class="op">;</span>
+}
+
+<span class="kw">func</span> <span class="fn">draw_box</span>(<span class="var">r</span> <span class="kw">of</span> <span class="type">Rect</span>, <span class="var">col</span> <span class="kw">of</span> <span class="type">string</span>) {
+    <span class="fn">draw_rect</span>(<span class="var">r</span>.<span class="var">x</span>, <span class="var">r</span>.<span class="var">y</span>, <span class="var">r</span>.<span class="var">w</span>, <span class="var">r</span>.<span class="var">h</span>, <span class="var">col</span>)<span class="op">;</span>
+}
+
+<span class="kw">let</span> <span class="var">wall</span> <span class="kw">of</span> <span class="type">Rect</span> <span class="op">=</span> Rect { <span class="var">x</span> <span class="op">=</span> <span class="num">0</span>, <span class="var">y</span> <span class="op">=</span> <span class="num">0</span>, <span class="var">w</span> <span class="op">=</span> <span class="num">800</span>, <span class="var">h</span> <span class="op">=</span> <span class="num">20</span> }<span class="op">;</span>
+<span class="fn">draw_box</span>(<span class="var">wall</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span></pre>
+    </div>
+
+    <h3>Array of structs</h3>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">bullets</span> <span class="kw">of</span> <span class="type">Vec2[]</span> <span class="op">=</span> []<span class="op">;</span>
+<span class="fn">push</span>(<span class="var">bullets</span>, Vec2 { <span class="var">x</span> <span class="op">=</span> <span class="num">400.0</span>, <span class="var">y</span> <span class="op">=</span> <span class="num">300.0</span> })<span class="op">;</span>
+
+<span class="cm">// Access field of struct in array</span>
+<span class="kw">let</span> <span class="var">bx</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="var">bullets</span>[<span class="num">0</span>].<span class="var">x</span><span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- SPARK -->
   <section class="section" id="spark">
-    <div class="section-header"><span class="section-number">10</span><h2>spark — Creating a Window</h2></div>
+    <div class="section-header"><span class="section-number">15</span><h2>spark — Creating a Window</h2></div>
     <p>Opens the application window. Call once before the <code>flame</code> block. Only needed in graphical modes.</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">spark</span> <span class="fn">window</span>(<span class="str">"My App"</span>, <span class="num">800</span>, <span class="num">600</span>)<span class="op">;</span></pre>
     </div>
+    <div class="callout info">
+      <strong>window_width() / window_height():</strong> call these inside <code>flame</code> to get the current window dimensions at runtime — useful for clamping positions or centering UI elements.
+    </div>
   </section>
 
   <!-- FLAME -->
   <section class="section" id="flame">
-    <div class="section-header"><span class="section-number">11</span><h2>flame — The Main Loop</h2></div>
-    <p>The <code>flame</code> block runs every frame. Variables declared inside it <strong>persist between frames</strong> — perfect for tracking player position, score, etc.</p>
+    <div class="section-header"><span class="section-number">16</span><h2>flame — The Main Loop</h2></div>
+    <p>The <code>flame</code> block runs every frame. Variables declared <em>outside</em> the <code>flame</code> block persist between frames — use them for game state. Variables declared <em>inside</em> are reset each frame.</p>
     <div class="callout">
       <strong>Always call <code>clear()</code> first</strong> to erase the previous frame before drawing the new one.
     </div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">let</span> <span class="var">px</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">100</span><span class="op">;</span>
+      <pre><span class="kw">let</span> <span class="var">px</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">100</span><span class="op">;</span>  <span class="cm">// persists across frames</span>
 
 <span class="kw">flame</span> {
     <span class="fn">clear</span>(<span class="str">"#111122"</span>)<span class="op">;</span>
 
-    <span class="cm">// Move player on key press</span>
     <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowRight"</span>) { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">+</span> <span class="num">4</span><span class="op">;</span> }
     <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>)  { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">-</span> <span class="num">4</span><span class="op">;</span> }
 
     <span class="fn">draw_rect</span>(<span class="var">px</span>, <span class="num">300</span>, <span class="num">40</span>, <span class="num">40</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
+
+    <span class="cm">// Delta time for frame-rate independent movement</span>
+    <span class="kw">let</span> <span class="var">dt</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">delta</span>()<span class="op">;</span>
 }</pre>
     </div>
   </section>
 
   <!-- BUILTINS: CONSOLE -->
   <section class="section" id="builtins-console">
-    <div class="section-header"><span class="section-number">12</span><h2>Built-ins — Console</h2></div>
+    <div class="section-header"><span class="section-number">17</span><h2>Built-ins — Console</h2></div>
     <div class="table-wrap">
       <table>
         <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td><code>print</code></td><td><code>print(value, ...)</code></td><td>Print to the terminal (works in all modes)</td></tr>
+          <tr><td><code>print</code></td><td><code>print(value, ...)</code></td><td>Print to the terminal. Accepts any number of arguments — they are joined with a space.</td></tr>
         </tbody>
       </table>
     </div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="fn">print</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>))<span class="op">;</span></pre>
+      <pre><span class="fn">print</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>))<span class="op">;</span>
+<span class="fn">print</span>(<span class="str">"x ="</span>, <span class="fn">to_string</span>(<span class="var">x</span>), <span class="str">"y ="</span>, <span class="fn">to_string</span>(<span class="var">y</span>))<span class="op">;</span>  <span class="cm">// multiple args</span></pre>
     </div>
   </section>
 
   <!-- BUILTINS: DRAWING -->
   <section class="section" id="builtins-drawing">
-    <div class="section-header"><span class="section-number">13</span><h2>Built-ins — Drawing</h2></div>
+    <div class="section-header"><span class="section-number">18</span><h2>Built-ins — Drawing</h2></div>
     <p>All drawing functions work inside <code>flame { }</code>. Colors are CSS strings: <code>"#ff6b1a"</code>, <code>"red"</code>, <code>"rgba(255,100,0,0.5)"</code>.</p>
 
     <div class="table-wrap">
@@ -668,6 +910,10 @@ flint</pre>
           <tr><td><code>draw_circle_outline</code></td><td><code>draw_circle_outline(x, y, r, color?)</code></td><td>Circle outline only.</td></tr>
           <tr><td><code>draw_line</code></td><td><code>draw_line(x1, y1, x2, y2, color?)</code></td><td>Line between two points.</td></tr>
           <tr><td><code>draw_text</code></td><td><code>draw_text(text, x, y, size?, color?)</code></td><td>Text. size defaults to 16px.</td></tr>
+          <tr><td><code>draw_polygon</code></td><td><code>draw_polygon(x, y, sides, r, color?)</code></td><td>Filled regular polygon. <code>sides</code> is the number of vertices; <code>r</code> is the circumradius.</td></tr>
+          <tr><td><code>draw_polygon_outline</code></td><td><code>draw_polygon_outline(x, y, sides, r, color?)</code></td><td>Regular polygon outline only.</td></tr>
+          <tr><td><code>window_width</code></td><td><code>window_width() → int</code></td><td>Current window width in pixels.</td></tr>
+          <tr><td><code>window_height</code></td><td><code>window_height() → int</code></td><td>Current window height in pixels.</td></tr>
         </tbody>
       </table>
     </div>
@@ -676,16 +922,24 @@ flint</pre>
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="fn">clear</span>(<span class="str">"#1a1a2e"</span>)<span class="op">;</span>
 <span class="fn">draw_rect</span>(<span class="num">50</span>, <span class="num">50</span>, <span class="num">200</span>, <span class="num">100</span>, <span class="str">"#e94560"</span>)<span class="op">;</span>
-<span class="fn">draw_rect_outline</span>(<span class="num">50</span>, <span class="num">50</span>, <span class="num">200</span>, <span class="num">100</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
 <span class="fn">draw_circle</span>(<span class="num">400</span>, <span class="num">300</span>, <span class="num">60</span>, <span class="str">"#ffaa33"</span>)<span class="op">;</span>
 <span class="fn">draw_line</span>(<span class="num">0</span>, <span class="num">0</span>, <span class="num">800</span>, <span class="num">600</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
-<span class="fn">draw_text</span>(<span class="str">"Score: 0"</span>, <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span></pre>
+<span class="fn">draw_text</span>(<span class="str">"Score: 0"</span>, <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
+
+<span class="cm">// Pentagon, radius 50, centered at (400, 300)</span>
+<span class="fn">draw_polygon</span>(<span class="num">400</span>, <span class="num">300</span>, <span class="num">5</span>, <span class="num">50</span>, <span class="str">"#88aaff"</span>)<span class="op">;</span>
+<span class="fn">draw_polygon_outline</span>(<span class="num">400</span>, <span class="num">300</span>, <span class="num">5</span>, <span class="num">50</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
+
+<span class="cm">// Center something using window dimensions</span>
+<span class="kw">let</span> <span class="var">cx</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">window_width</span>() <span class="op">/</span> <span class="num">2</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">cy</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">window_height</span>() <span class="op">/</span> <span class="num">2</span><span class="op">;</span>
+<span class="fn">draw_circle</span>(<span class="var">cx</span>, <span class="var">cy</span>, <span class="num">30</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- BUILTINS: INPUT -->
   <section class="section" id="builtins-input">
-    <div class="section-header"><span class="section-number">14</span><h2>Built-ins — Input</h2></div>
+    <div class="section-header"><span class="section-number">19</span><h2>Built-ins — Input</h2></div>
     <p>All input functions are called inside <code>flame { }</code>. They return <code>1</code> (true) or <code>0</code> (false) so you can use them directly in <code>if</code> conditions.</p>
 
     <div class="table-wrap">
@@ -736,29 +990,13 @@ flint</pre>
     <span class="fn">draw_circle</span>(<span class="var">px</span>, <span class="var">py</span>, <span class="num">20</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
 }</pre>
     </div>
-
-    <h3>Mouse drawing</h3>
-    <div class="code-wrap">
-      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="kw">flame</span> {
-    <span class="kw">if</span> <span class="input-fn">mouse_down</span>() {
-        <span class="kw">let</span> <span class="var">mx</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="input-fn">mouse_x</span>()<span class="op">;</span>
-        <span class="kw">let</span> <span class="var">my</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="input-fn">mouse_y</span>()<span class="op">;</span>
-        <span class="fn">draw_circle</span>(<span class="var">mx</span>, <span class="var">my</span>, <span class="num">10</span>, <span class="str">"#ffaa33"</span>)<span class="op">;</span>
-    }
-}
-
-<span class="cm">// key_pressed — fires only on the frame the key goes down</span>
-<span class="kw">let</span> <span class="var">jumped</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
-<span class="kw">flame</span> {
-    <span class="kw">if</span> <span class="input-fn">key_pressed</span>(<span class="str">" "</span>) { <span class="var">jumped</span> <span class="op">=</span> <span class="num">1</span><span class="op">;</span> }
-}</pre>
-    </div>
   </section>
 
   <!-- BUILTINS: MATH -->
   <section class="section" id="builtins-math">
-    <div class="section-header"><span class="section-number">15</span><h2>Built-ins — Math</h2></div>
+    <div class="section-header"><span class="section-number">20</span><h2>Built-ins — Math</h2></div>
+    <p>These are available without any <code>kindle</code>. For trigonometry and advanced math, use <code>kindle math</code> — see the <a href="#kindle-math" style="color:var(--ember)">kindle math</a> section.</p>
+
     <div class="table-wrap">
       <table>
         <thead><tr><th>Function</th><th>Signature</th><th>Returns</th></tr></thead>
@@ -780,38 +1018,280 @@ flint</pre>
     </div>
   </section>
 
-  <!-- BUILTINS: CONVERSION -->
-  <section class="section" id="builtins-convert">
-    <div class="section-header"><span class="section-number">16</span><h2>Built-ins — Conversion</h2></div>
+  <!-- BUILTINS: RANDOM -->
+  <section class="section" id="builtins-random">
+    <div class="section-header"><span class="section-number">21</span><h2>Built-ins — Random</h2></div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Function</th><th>Signature</th><th>Returns</th></tr></thead>
+        <thead><tr><th>Function</th><th>Signature</th><th>Returns</th><th>Description</th></tr></thead>
         <tbody>
-          <tr><td><code>to_string</code></td><td><code>to_string(value)</code></td><td>string</td></tr>
-          <tr><td><code>to_number</code></td><td><code>to_number(value)</code></td><td>number</td></tr>
+          <tr><td><code>random</code></td><td><code>random()</code></td><td>float in [0, 1)</td><td>Random float between 0 and 1.</td></tr>
+          <tr><td><code>random</code></td><td><code>random(min, max)</code></td><td>float in [min, max)</td><td>Random float in a range.</td></tr>
+          <tr><td><code>random_int</code></td><td><code>random_int(min, max)</code></td><td>int in [min, max]</td><td>Random integer, <strong>inclusive</strong> of both ends.</td></tr>
         </tbody>
       </table>
     </div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
-      <pre><span class="fn">draw_text</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>), <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#fff"</span>)<span class="op">;</span></pre>
+      <pre><span class="cm">// Random float 0–1</span>
+<span class="kw">let</span> <span class="var">r</span>  <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">random</span>()<span class="op">;</span>
+
+<span class="cm">// Random float in a range</span>
+<span class="kw">let</span> <span class="var">spd</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">random</span>(<span class="num">1.0</span>, <span class="num">5.0</span>)<span class="op">;</span>
+
+<span class="cm">// Random integer (inclusive): 1, 2, 3, 4, or 5</span>
+<span class="kw">let</span> <span class="var">die</span>  <span class="kw">of</span> <span class="type">int</span>   <span class="op">=</span> <span class="fn">random_int</span>(<span class="num">1</span>, <span class="num">6</span>)<span class="op">;</span>
+
+<span class="cm">// Spawn an enemy at a random X position</span>
+<span class="kw">let</span> <span class="var">ex</span>   <span class="kw">of</span> <span class="type">int</span>   <span class="op">=</span> <span class="fn">random_int</span>(<span class="num">0</span>, <span class="fn">window_width</span>())<span class="op">;</span></pre>
+    </div>
+  </section>
+
+  <!-- BUILTINS: TIME -->
+  <section class="section" id="builtins-time">
+    <div class="section-header"><span class="section-number">22</span><h2>Built-ins — Time</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Signature</th><th>Returns</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>time</code></td><td><code>time() → int</code></td><td>milliseconds</td><td>Milliseconds elapsed since the program started.</td></tr>
+          <tr><td><code>delta</code></td><td><code>delta() → float</code></td><td>seconds</td><td>Seconds since the last frame. Use for frame-rate-independent physics.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">px</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="num">100.0</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">speed</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="num">200.0</span><span class="op">;</span>  <span class="cm">// pixels per second</span>
+
+<span class="kw">flame</span> {
+    <span class="fn">clear</span>(<span class="str">"#000000"</span>)<span class="op">;</span>
+
+    <span class="cm">// Frame-rate independent movement</span>
+    <span class="kw">let</span> <span class="var">dt</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">delta</span>()<span class="op">;</span>
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowRight"</span>) { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">+</span> <span class="var">speed</span> <span class="op">*</span> <span class="var">dt</span><span class="op">;</span> }
+
+    <span class="cm">// Time-based animation using total elapsed ms</span>
+    <span class="kw">let</span> <span class="var">t</span>  <span class="kw">of</span> <span class="type">int</span>   <span class="op">=</span> <span class="fn">time</span>()<span class="op">;</span>
+    <span class="fn">draw_text</span>(<span class="fn">to_string</span>(<span class="var">t</span>) <span class="op">+</span> <span class="str">"ms"</span>, <span class="num">10</span>, <span class="num">10</span>, <span class="num">14</span>, <span class="str">"#888"</span>)<span class="op">;</span>
+}</pre>
+    </div>
+  </section>
+
+  <!-- BUILTINS: ARRAYS -->
+  <section class="section" id="builtins-arrays">
+    <div class="section-header"><span class="section-number">23</span><h2>Built-ins — Array Functions</h2></div>
+    <p>These functions mutate arrays in place (except <code>concat</code> and <code>len</code>, which return a value).</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>push</code></td><td><code>push(arr, value)</code></td><td>Append <code>value</code> to the end of <code>arr</code>.</td></tr>
+          <tr><td><code>pop</code></td><td><code>pop(arr) → value</code></td><td>Remove and return the last element.</td></tr>
+          <tr><td><code>len</code></td><td><code>len(arr) → int</code></td><td>Number of elements. Also works on strings (character count).</td></tr>
+          <tr><td><code>remove</code></td><td><code>remove(arr, index)</code></td><td>Remove the element at <code>index</code> and shift remaining elements down.</td></tr>
+          <tr><td><code>insert</code></td><td><code>insert(arr, index, value)</code></td><td>Insert <code>value</code> at <code>index</code>, shifting elements up.</td></tr>
+          <tr><td><code>concat</code></td><td><code>concat(arr1, arr2) → array</code></td><td>Return a new array combining both arrays (originals unchanged).</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">items</span> <span class="kw">of</span> <span class="type">int[]</span> <span class="op">=</span> [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]<span class="op">;</span>
+
+<span class="fn">push</span>(<span class="var">items</span>, <span class="num">4</span>)<span class="op">;</span>              <span class="cm">// [1, 2, 3, 4]</span>
+<span class="kw">let</span> <span class="var">last</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">pop</span>(<span class="var">items</span>)<span class="op">;</span> <span class="cm">// items = [1, 2, 3], last = 4</span>
+<span class="fn">insert</span>(<span class="var">items</span>, <span class="num">1</span>, <span class="num">99</span>)<span class="op">;</span>         <span class="cm">// [1, 99, 2, 3]</span>
+<span class="fn">remove</span>(<span class="var">items</span>, <span class="num">1</span>)<span class="op">;</span>             <span class="cm">// [1, 2, 3]</span>
+
+<span class="kw">let</span> <span class="var">size</span> <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="fn">len</span>(<span class="var">items</span>)<span class="op">;</span>           <span class="cm">// 3</span>
+<span class="kw">let</span> <span class="var">both</span> <span class="kw">of</span> <span class="type">int[]</span> <span class="op">=</span> <span class="fn">concat</span>(<span class="var">items</span>, [<span class="num">7</span>, <span class="num">8</span>])<span class="op">;</span> <span class="cm">// [1,2,3,7,8]</span>
+
+<span class="cm">// len also works on strings</span>
+<span class="kw">let</span> <span class="var">chars</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">len</span>(<span class="str">"hello"</span>)<span class="op">;</span>  <span class="cm">// 5</span></pre>
+    </div>
+  </section>
+
+  <!-- BUILTINS: STRINGS -->
+  <section class="section" id="builtins-strings">
+    <div class="section-header"><span class="section-number">24</span><h2>Built-ins — String Functions</h2></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>len</code></td><td><code>len(str) → int</code></td><td>Number of characters in the string.</td></tr>
+          <tr><td><code>substr</code></td><td><code>substr(str, start, end?) → string</code></td><td>Extract characters from <code>start</code> up to (not including) <code>end</code>. Omit <code>end</code> for the rest of the string.</td></tr>
+          <tr><td><code>split</code></td><td><code>split(str, sep) → string[]</code></td><td>Split a string at each occurrence of <code>sep</code>; returns an array of parts.</td></tr>
+          <tr><td><code>join</code></td><td><code>join(arr, sep?) → string</code></td><td>Join an array into a string, with an optional separator between elements.</td></tr>
+          <tr><td><code>char_code</code></td><td><code>char_code(str) → int</code></td><td>Unicode value of the first character of <code>str</code>.</td></tr>
+          <tr><td><code>from_char_code</code></td><td><code>from_char_code(n) → string</code></td><td>Character whose Unicode value is <code>n</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">let</span> <span class="var">s</span> <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="str">"Hello, World!"</span><span class="op">;</span>
+
+<span class="fn">print</span>(<span class="fn">to_string</span>(<span class="fn">len</span>(<span class="var">s</span>)))<span class="op">;</span>              <span class="cm">// 13</span>
+<span class="fn">print</span>(<span class="fn">substr</span>(<span class="var">s</span>, <span class="num">0</span>, <span class="num">5</span>))<span class="op">;</span>               <span class="cm">// "Hello"</span>
+<span class="fn">print</span>(<span class="fn">substr</span>(<span class="var">s</span>, <span class="num">7</span>))<span class="op">;</span>                  <span class="cm">// "World!"</span>
+
+<span class="kw">let</span> <span class="var">parts</span> <span class="kw">of</span> <span class="type">string[]</span> <span class="op">=</span> <span class="fn">split</span>(<span class="var">s</span>, <span class="str">", "</span>)<span class="op">;</span>
+<span class="fn">print</span>(<span class="var">parts</span>[<span class="num">0</span>])<span class="op">;</span>                       <span class="cm">// "Hello"</span>
+<span class="fn">print</span>(<span class="var">parts</span>[<span class="num">1</span>])<span class="op">;</span>                       <span class="cm">// "World!"</span>
+
+<span class="kw">let</span> <span class="var">joined</span> <span class="kw">of</span> <span class="type">string</span> <span class="op">=</span> <span class="fn">join</span>(<span class="var">parts</span>, <span class="str">" | "</span>)<span class="op">;</span>
+<span class="fn">print</span>(<span class="var">joined</span>)<span class="op">;</span>                         <span class="cm">// "Hello | World!"</span>
+
+<span class="fn">print</span>(<span class="fn">to_string</span>(<span class="fn">char_code</span>(<span class="str">"A"</span>)))<span class="op">;</span>      <span class="cm">// 65</span>
+<span class="fn">print</span>(<span class="fn">from_char_code</span>(<span class="num">65</span>))<span class="op">;</span>              <span class="cm">// "A"</span></pre>
+    </div>
+  </section>
+
+  <!-- BUILTINS: CONVERSION -->
+  <section class="section" id="builtins-convert">
+    <div class="section-header"><span class="section-number">25</span><h2>Built-ins — Conversion</h2></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Signature</th><th>Returns</th></tr></thead>
+        <tbody>
+          <tr><td><code>to_string</code></td><td><code>to_string(value)</code></td><td>string — works on numbers, bools, arrays, and structs</td></tr>
+          <tr><td><code>to_number</code></td><td><code>to_number(value)</code></td><td>number — parses a numeric string; returns NaN if invalid</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="fn">draw_text</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>), <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#fff"</span>)<span class="op">;</span>
+<span class="kw">let</span> <span class="var">n</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="fn">to_number</span>(<span class="str">"42"</span>)<span class="op">;</span>   <span class="cm">// 42</span></pre>
+    </div>
+  </section>
+
+  <!-- KINDLE MATH -->
+  <section class="section" id="kindle-math">
+    <div class="section-header"><span class="section-number">26</span><h2>kindle math — Extended Math Module</h2></div>
+    <p>Enable with <code>kindle math;</code> at the top of your file. Adds trigonometry, easing helpers, and useful constants.</p>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">ignite</span> game<span class="op">;</span>
+<span class="kw">kindle</span> math<span class="op">;</span>   <span class="cm">// must appear after ignite</span></pre>
+    </div>
+
+    <h3>Constants</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td><code>PI</code></td><td>3.141592…</td></tr>
+          <tr><td><code>TAU</code></td><td>6.283185… (2 × PI)</td></tr>
+          <tr><td><code>E</code></td><td>2.718281… (Euler's number)</td></tr>
+          <tr><td><code>INF</code></td><td>Positive infinity</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Trigonometry</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>sin</code></td><td><code>sin(radians) → float</code></td><td>Sine</td></tr>
+          <tr><td><code>cos</code></td><td><code>cos(radians) → float</code></td><td>Cosine</td></tr>
+          <tr><td><code>tan</code></td><td><code>tan(radians) → float</code></td><td>Tangent</td></tr>
+          <tr><td><code>asin</code></td><td><code>asin(n) → float</code></td><td>Arc sine</td></tr>
+          <tr><td><code>acos</code></td><td><code>acos(n) → float</code></td><td>Arc cosine</td></tr>
+          <tr><td><code>atan</code></td><td><code>atan(n) → float</code></td><td>Arc tangent</td></tr>
+          <tr><td><code>atan2</code></td><td><code>atan2(y, x) → float</code></td><td>Four-quadrant arc tangent — use for angles between two points</td></tr>
+          <tr><td><code>degrees</code></td><td><code>degrees(radians) → float</code></td><td>Convert radians to degrees</td></tr>
+          <tr><td><code>radians</code></td><td><code>radians(degrees) → float</code></td><td>Convert degrees to radians</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Exponents &amp; Logarithms</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>pow</code></td><td><code>pow(base, exp) → float</code></td><td>base raised to exp</td></tr>
+          <tr><td><code>exp</code></td><td><code>exp(n) → float</code></td><td>e raised to n</td></tr>
+          <tr><td><code>log</code></td><td><code>log(n) → float</code></td><td>Natural logarithm</td></tr>
+          <tr><td><code>log2</code></td><td><code>log2(n) → float</code></td><td>Base-2 logarithm</td></tr>
+          <tr><td><code>log10</code></td><td><code>log10(n) → float</code></td><td>Base-10 logarithm</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Easing &amp; Interpolation</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Function</th><th>Signature</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><code>clamp</code></td><td><code>clamp(value, min, max) → number</code></td><td>Clamp value between min and max.</td></tr>
+          <tr><td><code>lerp</code></td><td><code>lerp(a, b, t) → float</code></td><td>Linear interpolation: returns <code>a + (b − a) × t</code>. Use t in [0, 1].</td></tr>
+          <tr><td><code>smoothstep</code></td><td><code>smoothstep(edge0, edge1, x) → float</code></td><td>Smooth hermite interpolation between edge0 and edge1. Returns 0 below edge0, 1 above edge1.</td></tr>
+          <tr><td><code>sign</code></td><td><code>sign(n) → int</code></td><td>Returns −1, 0, or 1.</td></tr>
+          <tr><td><code>fract</code></td><td><code>fract(n) → float</code></td><td>Fractional part: <code>n − floor(n)</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
+      <pre><span class="kw">ignite</span> game<span class="op">;</span>
+<span class="kw">kindle</span> math<span class="op">;</span>
+
+<span class="kw">spark</span> <span class="fn">window</span>(<span class="str">"Orbit"</span>, <span class="num">800</span>, <span class="num">600</span>)<span class="op">;</span>
+
+<span class="kw">let</span> <span class="var">angle</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="num">0.0</span><span class="op">;</span>
+
+<span class="kw">flame</span> {
+    <span class="fn">clear</span>(<span class="str">"#0a0a14"</span>)<span class="op">;</span>
+
+    <span class="cm">// Orbit a circle around the center</span>
+    <span class="kw">let</span> <span class="var">cx</span> <span class="kw">of</span> <span class="type">int</span>   <span class="op">=</span> <span class="num">400</span><span class="op">;</span>
+    <span class="kw">let</span> <span class="var">cy</span> <span class="kw">of</span> <span class="type">int</span>   <span class="op">=</span> <span class="num">300</span><span class="op">;</span>
+    <span class="kw">let</span> <span class="var">r</span>  <span class="kw">of</span> <span class="type">int</span>   <span class="op">=</span> <span class="num">150</span><span class="op">;</span>
+    <span class="kw">let</span> <span class="var">ox</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="var">cx</span> <span class="op">+</span> <span class="math-fn">cos</span>(<span class="var">angle</span>) <span class="op">*</span> <span class="var">r</span><span class="op">;</span>
+    <span class="kw">let</span> <span class="var">oy</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="var">cy</span> <span class="op">+</span> <span class="math-fn">sin</span>(<span class="var">angle</span>) <span class="op">*</span> <span class="var">r</span><span class="op">;</span>
+
+    <span class="fn">draw_circle</span>(<span class="var">cx</span>, <span class="var">cy</span>, <span class="num">8</span>, <span class="str">"#555"</span>)<span class="op">;</span>
+    <span class="fn">draw_circle</span>(<span class="var">ox</span>, <span class="var">oy</span>, <span class="num">16</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
+
+    <span class="var">angle</span> <span class="op">=</span> <span class="var">angle</span> <span class="op">+</span> <span class="num">0.03</span><span class="op">;</span>
+
+    <span class="cm">// Smooth fade using smoothstep</span>
+    <span class="kw">let</span> <span class="var">t</span>     <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="math-fn">fract</span>(<span class="var">angle</span> <span class="op">/</span> <span class="const">TAU</span>)<span class="op">;</span>
+    <span class="kw">let</span> <span class="var">alpha</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="math-fn">smoothstep</span>(<span class="num">0.0</span>, <span class="num">0.5</span>, <span class="var">t</span>)<span class="op">;</span>
+
+    <span class="cm">// Angle of mouse relative to center</span>
+    <span class="kw">let</span> <span class="var">mangle</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="math-fn">atan2</span>(<span class="input-fn">mouse_y</span>() <span class="op">-</span> <span class="var">cy</span>, <span class="input-fn">mouse_x</span>() <span class="op">-</span> <span class="var">cx</span>)<span class="op">;</span>
+    <span class="kw">let</span> <span class="var">mdeg</span>   <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="math-fn">degrees</span>(<span class="var">mangle</span>)<span class="op">;</span>
+    <span class="fn">draw_text</span>(<span class="fn">to_string</span>(<span class="fn">round</span>(<span class="var">mdeg</span>)) <span class="op">+</span> <span class="str">"°"</span>, <span class="num">10</span>, <span class="num">10</span>, <span class="num">14</span>, <span class="str">"#888"</span>)<span class="op">;</span>
+}
+
+<span class="kw">ash</span><span class="op">;</span></pre>
     </div>
   </section>
 
   <!-- EXAMPLE: CLI -->
   <section class="section" id="example-cli">
-    <div class="section-header"><span class="section-number">17</span><h2>Example — CLI Program</h2></div>
+    <div class="section-header"><span class="section-number">27</span><h2>Example — CLI Program</h2></div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">ignite</span> cli<span class="op">;</span>
 
 <span class="kw">func</span> <span class="fn">fizzbuzz</span>(<span class="var">n</span> <span class="kw">of</span> <span class="type">int</span>) {
-    <span class="kw">let</span> <span class="var">i</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">1</span><span class="op">;</span>
-    <span class="kw">while</span> <span class="var">i</span> <span class="op">&lt;=</span> <span class="var">n</span> {
+    <span class="kw">for</span> <span class="var">i</span> <span class="kw">from</span> <span class="num">1</span> <span class="kw">to</span> <span class="var">n</span> <span class="op">+</span> <span class="num">1</span> {
         <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">15</span> <span class="op">==</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="str">"FizzBuzz"</span>)<span class="op">;</span> }
-        <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">3</span>  <span class="op">==</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="str">"Fizz"</span>)<span class="op">;</span> }
-        <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">5</span>  <span class="op">==</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="str">"Buzz"</span>)<span class="op">;</span> }
-        <span class="var">i</span> <span class="op">=</span> <span class="var">i</span> <span class="op">+</span> <span class="num">1</span><span class="op">;</span>
+        <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">3</span>  <span class="op">==</span> <span class="num">0</span> <span class="kw">and</span> <span class="var">i</span> <span class="op">%</span> <span class="num">15</span> <span class="op">!=</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="str">"Fizz"</span>)<span class="op">;</span> }
+        <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">5</span>  <span class="op">==</span> <span class="num">0</span> <span class="kw">and</span> <span class="var">i</span> <span class="op">%</span> <span class="num">15</span> <span class="op">!=</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="str">"Buzz"</span>)<span class="op">;</span> }
+        <span class="kw">if</span> <span class="var">i</span> <span class="op">%</span> <span class="num">3</span>  <span class="op">!=</span> <span class="num">0</span> <span class="kw">and</span> <span class="var">i</span> <span class="op">%</span> <span class="num">5</span> <span class="op">!=</span> <span class="num">0</span> { <span class="fn">print</span>(<span class="fn">to_string</span>(<span class="var">i</span>))<span class="op">;</span> }
     }
 }
 
@@ -823,7 +1303,7 @@ flint</pre>
 
   <!-- EXAMPLE: WINDOW -->
   <section class="section" id="example-window">
-    <div class="section-header"><span class="section-number">18</span><h2>Example — Window Application</h2></div>
+    <div class="section-header"><span class="section-number">28</span><h2>Example — Window Application</h2></div>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">ignite</span> window_app<span class="op">;</span>
@@ -849,19 +1329,30 @@ flint</pre>
 
   <!-- EXAMPLE: GAME -->
   <section class="section" id="example-game">
-    <div class="section-header"><span class="section-number">19</span><h2>Example — Interactive Game</h2></div>
-    <p>A complete moving-player game using keyboard input, score tracking, and a HUD.</p>
+    <div class="section-header"><span class="section-number">29</span><h2>Example — Interactive Game</h2></div>
+    <p>A complete moving-player game using keyboard input, score tracking, delta time, structs, and arrays.</p>
     <div class="code-wrap">
       <div class="code-header"><span class="code-lang">flint</span><button class="code-copy" onclick="copy(this)">copy</button></div>
       <pre><span class="kw">ignite</span> game<span class="op">;</span>
+<span class="kw">kindle</span> math<span class="op">;</span>
 
 <span class="kw">spark</span> <span class="fn">window</span>(<span class="str">"My Game"</span>, <span class="num">800</span>, <span class="num">600</span>)<span class="op">;</span>
 
-<span class="cm">// Player state (persists across frames)</span>
-<span class="kw">let</span> <span class="var">px</span>    <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">400</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">py</span>    <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">300</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">score</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
-<span class="kw">let</span> <span class="var">speed</span> <span class="kw">of</span> <span class="type">int</span> <span class="op">=</span> <span class="num">4</span><span class="op">;</span>
+<span class="kw">struct</span> <span class="type">Coin</span> {
+    <span class="var">x</span> <span class="kw">of</span> <span class="type">int</span><span class="op">;</span>
+    <span class="var">y</span> <span class="kw">of</span> <span class="type">int</span><span class="op">;</span>
+    <span class="var">alive</span> <span class="kw">of</span> <span class="type">int</span><span class="op">;</span>
+}
+
+<span class="kw">let</span> <span class="var">px</span>    <span class="kw">of</span> <span class="type">float</span>  <span class="op">=</span> <span class="num">400.0</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">py</span>    <span class="kw">of</span> <span class="type">float</span>  <span class="op">=</span> <span class="num">300.0</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">score</span> <span class="kw">of</span> <span class="type">int</span>    <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+<span class="kw">let</span> <span class="var">speed</span> <span class="kw">of</span> <span class="type">float</span>  <span class="op">=</span> <span class="num">200.0</span><span class="op">;</span>  <span class="cm">// px / sec</span>
+
+<span class="kw">let</span> <span class="var">coins</span> <span class="kw">of</span> <span class="type">Coin[]</span> <span class="op">=</span> []<span class="op">;</span>
+<span class="kw">for</span> <span class="var">i</span> <span class="kw">from</span> <span class="num">0</span> <span class="kw">to</span> <span class="num">5</span> {
+    <span class="fn">push</span>(<span class="var">coins</span>, Coin { <span class="var">x</span> <span class="op">=</span> <span class="fn">random_int</span>(<span class="num">50</span>, <span class="num">750</span>), <span class="var">y</span> <span class="op">=</span> <span class="fn">random_int</span>(<span class="num">50</span>, <span class="num">550</span>), <span class="var">alive</span> <span class="op">=</span> <span class="num">1</span> })<span class="op">;</span>
+}
 
 <span class="kw">func</span> <span class="fn">draw_hud</span>() {
     <span class="fn">draw_text</span>(<span class="str">"Score: "</span> <span class="op">+</span> <span class="fn">to_string</span>(<span class="var">score</span>), <span class="num">10</span>, <span class="num">10</span>, <span class="num">18</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
@@ -870,23 +1361,35 @@ flint</pre>
 
 <span class="kw">flame</span> {
     <span class="fn">clear</span>(<span class="str">"#111122"</span>)<span class="op">;</span>
+    <span class="kw">let</span> <span class="var">dt</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">delta</span>()<span class="op">;</span>
 
     <span class="cm">// Movement</span>
-    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowRight"</span>) { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">+</span> <span class="var">speed</span><span class="op">;</span> }
-    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>)  { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">-</span> <span class="var">speed</span><span class="op">;</span> }
-    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowUp"</span>)    { <span class="var">py</span> <span class="op">=</span> <span class="var">py</span> <span class="op">-</span> <span class="var">speed</span><span class="op">;</span> }
-    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowDown"</span>)  { <span class="var">py</span> <span class="op">=</span> <span class="var">py</span> <span class="op">+</span> <span class="var">speed</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowRight"</span>) { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">+</span> <span class="var">speed</span> <span class="op">*</span> <span class="var">dt</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowLeft"</span>)  { <span class="var">px</span> <span class="op">=</span> <span class="var">px</span> <span class="op">-</span> <span class="var">speed</span> <span class="op">*</span> <span class="var">dt</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowUp"</span>)    { <span class="var">py</span> <span class="op">=</span> <span class="var">py</span> <span class="op">-</span> <span class="var">speed</span> <span class="op">*</span> <span class="var">dt</span><span class="op">;</span> }
+    <span class="kw">if</span> <span class="input-fn">key_down</span>(<span class="str">"ArrowDown"</span>)  { <span class="var">py</span> <span class="op">=</span> <span class="var">py</span> <span class="op">+</span> <span class="var">speed</span> <span class="op">*</span> <span class="var">dt</span><span class="op">;</span> }
 
-    <span class="cm">// Score on space</span>
-    <span class="kw">if</span> <span class="input-fn">key_pressed</span>(<span class="str">" "</span>) { <span class="var">score</span> <span class="op">=</span> <span class="var">score</span> <span class="op">+</span> <span class="num">10</span><span class="op">;</span> }
+    <span class="cm">// Clamp</span>
+    <span class="var">px</span> <span class="op">=</span> <span class="fn">max</span>(<span class="num">16.0</span>, <span class="fn">min</span>(<span class="var">px</span>, <span class="num">784.0</span>))<span class="op">;</span>
+    <span class="var">py</span> <span class="op">=</span> <span class="fn">max</span>(<span class="num">16.0</span>, <span class="fn">min</span>(<span class="var">py</span>, <span class="num">584.0</span>))<span class="op">;</span>
 
-    <span class="cm">// Clamp to window bounds</span>
-    <span class="var">px</span> <span class="op">=</span> <span class="fn">max</span>(<span class="num">0</span>, <span class="fn">min</span>(<span class="var">px</span>, <span class="num">768</span>))<span class="op">;</span>
-    <span class="var">py</span> <span class="op">=</span> <span class="fn">max</span>(<span class="num">0</span>, <span class="fn">min</span>(<span class="var">py</span>, <span class="num">568</span>))<span class="op">;</span>
+    <span class="cm">// Coin collection</span>
+    <span class="kw">for</span> <span class="var">i</span> <span class="kw">from</span> <span class="num">0</span> <span class="kw">to</span> <span class="fn">len</span>(<span class="var">coins</span>) {
+        <span class="kw">if</span> <span class="var">coins</span>[<span class="var">i</span>].<span class="var">alive</span> {
+            <span class="kw">let</span> <span class="var">dx</span>   <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="var">px</span> <span class="op">-</span> <span class="var">coins</span>[<span class="var">i</span>].<span class="var">x</span><span class="op">;</span>
+            <span class="kw">let</span> <span class="var">dy</span>   <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="var">py</span> <span class="op">-</span> <span class="var">coins</span>[<span class="var">i</span>].<span class="var">y</span><span class="op">;</span>
+            <span class="kw">let</span> <span class="var">dist</span> <span class="kw">of</span> <span class="type">float</span> <span class="op">=</span> <span class="fn">sqrt</span>(<span class="var">dx</span><span class="op">*</span><span class="var">dx</span> <span class="op">+</span> <span class="var">dy</span><span class="op">*</span><span class="var">dy</span>)<span class="op">;</span>
+            <span class="kw">if</span> <span class="var">dist</span> <span class="op">&lt;</span> <span class="num">24</span> {
+                <span class="var">coins</span>[<span class="var">i</span>].<span class="var">alive</span> <span class="op">=</span> <span class="num">0</span><span class="op">;</span>
+                <span class="var">score</span> <span class="op">=</span> <span class="var">score</span> <span class="op">+</span> <span class="num">10</span><span class="op">;</span>
+            }
+            <span class="fn">draw_circle</span>(<span class="var">coins</span>[<span class="var">i</span>].<span class="var">x</span>, <span class="var">coins</span>[<span class="var">i</span>].<span class="var">y</span>, <span class="num">10</span>, <span class="str">"#ffcc00"</span>)<span class="op">;</span>
+        }
+    }
 
     <span class="cm">// Draw player</span>
-    <span class="fn">draw_rect</span>(<span class="var">px</span>, <span class="var">py</span>, <span class="num">32</span>, <span class="num">32</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
-    <span class="fn">draw_rect_outline</span>(<span class="var">px</span>, <span class="var">py</span>, <span class="num">32</span>, <span class="num">32</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
+    <span class="fn">draw_rect</span>(<span class="var">px</span> <span class="op">-</span> <span class="num">16</span>, <span class="var">py</span> <span class="op">-</span> <span class="num">16</span>, <span class="num">32</span>, <span class="num">32</span>, <span class="str">"#ff6b1a"</span>)<span class="op">;</span>
+    <span class="fn">draw_rect_outline</span>(<span class="var">px</span> <span class="op">-</span> <span class="num">16</span>, <span class="var">py</span> <span class="op">-</span> <span class="num">16</span>, <span class="num">32</span>, <span class="num">32</span>, <span class="str">"#ffffff"</span>)<span class="op">;</span>
 
     <span class="fn">draw_hud</span>()<span class="op">;</span>
 }
@@ -897,25 +1400,44 @@ flint</pre>
 
   <!-- QUICK REF -->
   <section class="section" id="quickref">
-    <div class="section-header"><span class="section-number">20</span><h2>Quick Reference</h2></div>
+    <div class="section-header"><span class="section-number">30</span><h2>Quick Reference</h2></div>
 
     <div class="qref-grid">
       <div class="qref-card"><div class="qref-label">Run Mode</div><code>ignite MODE;</code></div>
-      <div class="qref-card"><div class="qref-label">Import</div><code>kindle MODULE;</code></div>
+      <div class="qref-card"><div class="qref-label">Import</div><code>kindle math;</code></div>
       <div class="qref-card"><div class="qref-label">Declare Variable</div><code>let name of TYPE = value;</code></div>
       <div class="qref-card"><div class="qref-label">Reassign</div><code>name = newValue;</code></div>
+      <div class="qref-card"><div class="qref-label">Array</div><code>let a of int[] = [1, 2, 3];</code></div>
+      <div class="qref-card"><div class="qref-label">Index</div><code>a[0]  a[i] = val;</code></div>
+      <div class="qref-card"><div class="qref-label">Struct</div><code>struct S { x of int; }</code></div>
+      <div class="qref-card"><div class="qref-label">Struct Instance</div><code>S { x = 10 }</code></div>
+      <div class="qref-card"><div class="qref-label">Member Access</div><code>obj.field  obj.field = v;</code></div>
       <div class="qref-card"><div class="qref-label">Function</div><code>func name(p of T) { }</code></div>
       <div class="qref-card"><div class="qref-label">Function + Return</div><code>func name(p of T) { } returns T;</code></div>
       <div class="qref-card"><div class="qref-label">If / Else</div><code>if COND { } else { }</code></div>
       <div class="qref-card"><div class="qref-label">While</div><code>while COND { }</code></div>
+      <div class="qref-card"><div class="qref-label">For</div><code>for i from 0 to n { }</code></div>
+      <div class="qref-card"><div class="qref-label">For + Step</div><code>for i from 10 to 0 step -1 { }</code></div>
+      <div class="qref-card"><div class="qref-label">Break</div><code>break;</code></div>
+      <div class="qref-card"><div class="qref-label">Logic</div><code>and  or  not</code></div>
       <div class="qref-card"><div class="qref-label">Window</div><code>spark window(title, w, h);</code></div>
       <div class="qref-card"><div class="qref-label">Main Loop</div><code>flame { }</code></div>
       <div class="qref-card"><div class="qref-label">Key Held</div><code>key_down("ArrowLeft")</code></div>
       <div class="qref-card"><div class="qref-label">Key Once</div><code>key_pressed(" ")</code></div>
       <div class="qref-card"><div class="qref-label">Mouse Pos</div><code>mouse_x()  mouse_y()</code></div>
       <div class="qref-card"><div class="qref-label">Mouse Click</div><code>mouse_pressed()</code></div>
-      <div class="qref-card"><div class="qref-label">End Program</div><code>ash;</code></div>
+      <div class="qref-card"><div class="qref-label">Delta Time</div><code>delta()  — seconds/frame</code></div>
+      <div class="qref-card"><div class="qref-label">Elapsed Time</div><code>time()  — ms since start</code></div>
+      <div class="qref-card"><div class="qref-label">Random Int</div><code>random_int(min, max)</code></div>
+      <div class="qref-card"><div class="qref-label">Random Float</div><code>random(min, max)</code></div>
+      <div class="qref-card"><div class="qref-label">Array Push/Pop</div><code>push(arr, v)  pop(arr)</code></div>
+      <div class="qref-card"><div class="qref-label">Array Length</div><code>len(arr)  len(str)</code></div>
+      <div class="qref-card"><div class="qref-label">String Slice</div><code>substr(str, start, end?)</code></div>
+      <div class="qref-card"><div class="qref-label">Math Constants</div><code>PI  TAU  E  INF</code></div>
+      <div class="qref-card"><div class="qref-label">Trig</div><code>sin  cos  tan  atan2</code></div>
+      <div class="qref-card"><div class="qref-label">Interpolation</div><code>lerp(a, b, t)  smoothstep</code></div>
       <div class="qref-card"><div class="qref-label">Types</div><code>int  float  string  bool  void</code></div>
+      <div class="qref-card"><div class="qref-label">End Program</div><code>ash;</code></div>
     </div>
   </section>
 
